@@ -17,6 +17,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
+    "/UserDashboard": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/UserDashboard.js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

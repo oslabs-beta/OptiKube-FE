@@ -615,6 +615,16 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({\n    value: true\n}));
 
 /***/ }),
 
+/***/ "./node_modules/next/document.js":
+/*!***************************************!*\
+  !*** ./node_modules/next/document.js ***!
+  \***************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__(/*! ./dist/pages/_document */ \"./node_modules/next/dist/pages/_document.js\")\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvbmV4dC9kb2N1bWVudC5qcyIsIm1hcHBpbmdzIjoiQUFBQSxpSEFBa0QiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9ub2RlX21vZHVsZXMvbmV4dC9kb2N1bWVudC5qcz85YTE0Il0sInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0gcmVxdWlyZSgnLi9kaXN0L3BhZ2VzL19kb2N1bWVudCcpXG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/next/document.js\n");
+
+/***/ }),
+
 /***/ "./node_modules/next/link.js":
 /*!***********************************!*\
   !*** ./node_modules/next/link.js ***!
