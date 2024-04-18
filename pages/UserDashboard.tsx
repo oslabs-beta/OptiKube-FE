@@ -3,9 +3,9 @@ import { GridBackgroundDemo } from "../components/GridBackground";
 
 const UserDashboard = () => {
   return (
-      <a>
+      <div>
         <GridBackgroundDemo />
-      </a>
+      </div>
   );
 };
 

@@ -1,6 +1,7 @@
 // pages/_app.tsx
 
 import NavBar from '../components/NavBar';
+import Footer from "../components/Footer";
 import { AppProps } from 'next/app'; // This provides the correct type for the Component and pageProps parameters.
 import '../styles/styles.scss';
 
@@ -8,8 +9,9 @@ import '../styles/styles.scss';
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }
