@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { GridBackgroundDemo } from "../components/GridBackground";
+import React from 'react';
 
 const UserDashboard = () => {
   return (
