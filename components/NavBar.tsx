@@ -2,6 +2,8 @@ import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import classNames from "classnames";
 import { CaretDownIcon } from "@radix-ui/react-icons";
+import { cn } from "public/utils/aceUI/cn";
+
 
 const NavBar = () => {
   return (
@@ -99,26 +101,30 @@ const NavBar = () => {
   );
 };
 
-const ListItem = React.forwardRef(
-  ({ className, children, title, ...props }, forwardedRef) => (
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
     <li>
-      <NavigationMenu.Link asChild>
+      <NavigationMenu.NavigationMenuLink asChild>
         <a
-          className={classNames(
-            "focus:shadow-[0_0_0_2px] focus:shadow-violet7 hover:bg-mauve3 block select-none rounded-[6px] p-3 text-[15px] leading-none no-underline outline-none transition-colors",
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
-          ref={forwardedRef}
         >
-          <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-            {title}
-          </div>
-          <p className="text-mauve11 leading-[1.4]">{children}</p>
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
         </a>
-      </NavigationMenu.Link>
+      </NavigationMenu.NavigationMenuLink>
     </li>
-  )
-);
-
+  );
+});
+ListItem.displayName = "ListItem";
 export default NavBar;
