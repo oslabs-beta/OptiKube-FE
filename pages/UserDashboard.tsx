@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { GridBackgroundDemo } from "../components/GridBackground";
 import { InfiniteMovingCards } from '../components/Infinite-Moving-Cards';
 
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+
 const userDashboardItems = [
   {
     quote: "Not that expensive.",
@@ -22,11 +25,17 @@ const userDashboardItems = [
 
 const UserDashboard = () => {
   return (
-    <div className="relative h-[50rem]"> {/* Set the relative positioning and height */}
+    <div className="relative h-[50rem]">
+      {" "}
+      {/* Set the relative positioning and height */}
+      <NavBar />
       <GridBackgroundDemo />
-      <div className="absolute inset-0 flex items-center justify-center"> {/* Center the content */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        {" "}
+        {/* Center the content */}
         <InfiniteMovingCards items={userDashboardItems} />
       </div>
+      <Footer />
     </div>
   );
 };
