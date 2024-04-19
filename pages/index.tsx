@@ -1,6 +1,6 @@
 // "use client";
 import React from "react";
-import { Boxes } from "../components/Background-Boxes";
+import { Boxes } from "../components/background-boxes";
 import { cn } from "../utils/cn";
 import Link from 'next/link';
 
