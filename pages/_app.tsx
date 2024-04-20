@@ -9,9 +9,9 @@ import '../styles/styles.scss';
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <Component {...pageProps} />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
