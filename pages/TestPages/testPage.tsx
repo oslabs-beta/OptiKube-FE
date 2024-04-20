@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { BackgroundGradientAnimation } from '../components/background-gradient-animation';
+import { BackgroundGradientAnimation } from '../../components/background-gradient-animation';
 
 
 export default function testPage() {
