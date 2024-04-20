@@ -1,7 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { BentoGridDemo, BentoGridThirdDemo, BentoGridSecondDemo } from '../../components/bento-full';
+import { BentoGridDemo, BentoGridThirdDemo, BentoGridSecondDemo } from '../../components/bento-2x2';
+
 import NavBar from "../../components/NavBar";
+
+
+
 export default function testPage() {
 
 
