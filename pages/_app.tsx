@@ -1,3 +1,4 @@
+"use client"
 // pages/_app.tsx
 
 import NavBar from '../components/NavBar';

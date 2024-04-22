@@ -1,26 +1,30 @@
-// Learn what this page does
-
 {
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": "./",
+    "paths": {
+      "public/*": ["public/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.mts", "server/server.ts"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "transpileOnly": true,
     "compilerOptions": {
-      "target": "es5",
-      "lib": ["dom", "dom.iterable", "esnext"],
-      "allowJs": true,
-      "skipLibCheck": true,
-      "strict": false,
-      "forceConsistentCasingInFileNames": true,
-      "noEmit": true,
-      "esModuleInterop": true,
-      "module": "esnext",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "jsx": "preserve",
-      "incremental": true,
-      "baseUrl": "./",
-      "paths": {
-        "public/*": ["public/*"]
-      }
-    },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules"]
-  }  
+      "module": "commonjs"
+    }
+  }
+}  
