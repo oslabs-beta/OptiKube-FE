@@ -7,66 +7,63 @@ import { cn } from "../public/utils/shadcnUI/cn";
 
 const NavBar = () => {
   return (
-    <div className="h-12 bg-slate-200 m-0">
-      <NavigationMenu.Root className="relative z-[2] flex w-screen justify-center">
-        <NavigationMenu.List className="center shadow-blackA4 m-1 flex list-none rounded-[6px] bg-slate-200 p-1 px-8">
+    <div className="h-12 bg-blue-950 m-0">
+      <NavigationMenu.Root className="relative z-50 flex w-screen justify-center">
+        <NavigationMenu.List className="center shadow-blackA4 m-1 flex list-none rounded-[6px] bg-blue-950 p-1 px-8">
           <NavigationMenu.Item>
-            <NavigationMenu.Trigger className="text-violet11 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
+            <NavigationMenu.Trigger className="text-zinc-200 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
               User{" "}
               <CaretDownIcon
-                className="text-violet10 relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
+                className="text-zinc-200 relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
                 aria-hidden
               />
             </NavigationMenu.Trigger>
             <NavigationMenu.Content className="bg-slate-200 data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-auto sm:w-auto">
               <ul className="one m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px]">
                 <ListItem href="https://stitches.dev/" title="Overview">
-                  Get the daily report of your Optikebe
+                  Get high-level information regarding your cluster.
                 </ListItem>
               </ul>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
 
           <NavigationMenu.Item>
-            <NavigationMenu.Trigger className="text-violet11 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
-              Metrixes{" "}
+            <NavigationMenu.Trigger className="text-zinc-200 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
+              Metrics{" "}
               <CaretDownIcon
-                className="text-violet10 relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
+                className="text-zinc-200 relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
                 aria-hidden
               />
             </NavigationMenu.Trigger>
             <NavigationMenu.Content className="absolute top-0 left-0 w-full sm:w-auto bg-slate-200">
               <ul className="m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px] sm:grid-flow-col sm:grid-rows-3">
                 <ListItem
-                  title="CPU Utilize"
+                  title="CPU Utilization"
                   href="/primitives/docs/overview/introduction"
                 >
-                  Vislize how the CPU is utilized over GKE, get the instant
-                  insight
+                  Vislize how much CPU is utilized over GKE.
                 </ListItem>
                 <ListItem
-                  title="RAM Utilize"
+                  title="RAM Utilization"
                   href="/primitives/docs/overview/getting-started"
                 >
-                  Vislize how the RAM is utilized over GKE, get the instant
-                  insight
+                  Vislize how much RAM is utilized over GKE.
                 </ListItem>
                 <ListItem
-                  title="*** Utilize"
+                  title="GPU Utilization"
                   href="/primitives/docs/guides/styling"
                 >
-                  Vislize how the *** is utilized over GKE, get the instant
-                  insight
+                  Vislize how much GPU is utilized over GKE.
                 </ListItem>
               </ul>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
 
           <NavigationMenu.Item>
-            <NavigationMenu.Trigger className="text-violet11 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
+            <NavigationMenu.Trigger className="text-zinc-200 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
               HPA{" "}
               <CaretDownIcon
-                className="text-violet10 relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
+                className="text-zinc-200 relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
                 aria-hidden
               />
             </NavigationMenu.Trigger>
@@ -81,7 +78,7 @@ const NavBar = () => {
 
           <NavigationMenu.Item>
             <NavigationMenu.Link
-              className="text-violet11 hover:bg-violet3 focus:shadow-violet7 block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]"
+              className="text-zinc-200 hover:bg-violet3 focus:shadow-violet7 block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]"
               href="https://github.com/oslabs-beta/Kubernetes-OSP"
             >
               Github
