@@ -12,9 +12,11 @@ export function GridBackgroundDemo({ children }: GridBackgroundDemoProps) {
       <p className="text-1xl sm:text-5xl font-bold top-60 left-20 relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
         Overview
       </p>
-      <p className="text-4xl sm:text-7xl font-bold top-10 right-70 absolute z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
+
+      {/* <p className="text-4xl sm:text-7xl font-bold top-10 right-70 absolute z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
         User Dashboard
-      </p>
+      </p> */}
+      
       {/* ... Rest of your code, such as the button, goes here */}
     </div>
   );
