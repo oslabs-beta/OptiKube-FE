@@ -38,10 +38,19 @@ const HPADashboard = () => {
   }, []);
 
   return (
-      <>
-          <span>Deployments:</span>
-          {deployments}
-      </>
+    <>
+        <NavBar/>
+        <div className="container mx-auto px-4">
+            <h1 className="text-2xl font-bold text-center my-8">Deployments</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {deployments}
+            </div>
+        </div>
+    </>
+    //   <>
+    //       <span>Deployments:</span>
+    //       {deployments}
+    //   </>
   );
 
 
