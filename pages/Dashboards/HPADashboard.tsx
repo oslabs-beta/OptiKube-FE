@@ -12,36 +12,58 @@
   
 //   export default HPADashboard;
 
-
-  "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { LampContainer } from "../../components/lamp";
-
+import Deployment from "../../components/Deployment"; 
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer"
 
 const HPADashboard = () => {
+  const [deployments, setDeployments] = useState([]);
+  useEffect(() => {
+      const fetchDeployments = async () => {
+          try {
+              const response = await fetch('http://34.71.62.191:80/api/deployments');
+              const data = await response.json();
+              const deploymentItems = data.map((item, index) => 
+                  <Deployment deployment={item} key={index} />
+              );
+              setDeployments(deploymentItems);
+          } catch (err) {
+              console.log(err);
+          }
+      };
+      fetchDeployments();
+  }, []);
 
   return (
-    <div>
-
-      <NavBar />
-    <LampContainer>
-      <motion.h1
-        initial={{ opacity: 0.5, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}
-        className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-        Under Construction
-      </motion.h1>
-    </LampContainer>
-          </div>
+      <>
+          <span>Deployments:</span>
+          {deployments}
+      </>
   );
+
+
+  // return (
+  //   <div>
+
+  //     <NavBar />
+  //   <LampContainer>
+  //     <motion.h1
+  //       initial={{ opacity: 0.5, y: 100 }}
+  //       whileInView={{ opacity: 1, y: 0 }}
+  //       transition={{
+  //         delay: 0.3,
+  //         duration: 0.8,
+  //         ease: "easeInOut",
+  //       }}
+  //       className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
+  //       Under Construction
+  //     </motion.h1>
+  //   </LampContainer>
+  //         </div>
+  // );
 }
 
 export default HPADashboard;
