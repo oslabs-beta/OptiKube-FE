@@ -21,7 +21,7 @@ interface CostData {
 }
 
 const CostDashboard = () => {
-  const [cpuCost, setCpuCost] = useState<CostData[] | undefined>({});
+  const [cpuCost, setCpuCost] = useState<CostData[] | undefined>([]);
 
   useEffect(() => {
     const fetchCpuCost = async () => {
@@ -29,24 +29,24 @@ const CostDashboard = () => {
         const response = await axios.get<CostData[]>(
           "http://localhost:9090/model/allocation?window=6h&aggregate=controllerKind,controller&accumulate=true"
         );
-        const cpuCostArr = {};
+        const cpuCostArr: CostData[] = [];
 
         Object.keys(response.data).forEach((key) => {
           const item = response.data[key];
           console.log(">>> item: ", item);
-          
+
           Object.entries(item).forEach(([subKey, value]) => {
             console.log(">>> subkey 1: ", subKey);
-            if (subKey == "cpuCost") {
-                console.log(">>> subkey: ", subKey);
-                console.log(">>> value: ", value);
-              cpuCostArr[key] = { name: item.name, cpuCost: value };
+            if (subKey === "cpuCost") {
+              console.log(">>> subkey: ", subKey);
+              console.log(">>> value: ", value);
+              cpuCostArr.push({ name: item.name, cpuCost: value });
             }
           });
         });
 
         console.log(">>> cpuCostArr: ", cpuCostArr);
-        setCpuCost(cpuCostArr);
+        setCpuCost(cpuCostArr); // Fixed syntax here
       } catch (error) {
         console.error("Error fetching data:", error);
       }
