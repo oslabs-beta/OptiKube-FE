@@ -1,12 +1,12 @@
 import express, { Express, Request, Response, NextFunction } from "express";
-// import metrixesRoute from "./routes/metrixesRoutes";
+import metrixesRoute from "./routes/metrixesRoutes";
 
 // Definition
 const PORT = 8080;
 const app: Express = express();
 
 // Routes handler
-// app.use("/api/metrixesdashboard", metrixesRoute);
+app.use("/api/metrixesdashboard", metrixesRoute);
 
 // Default route handler
 app.use("/api", (req: Request, res: Response) => {
@@ -34,6 +34,8 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
+
+
 
 // second approach
 // import express, { Request, Response } from "express";
