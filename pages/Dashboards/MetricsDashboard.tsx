@@ -1,7 +1,11 @@
 // pages/placeholder-page.tsx
 import React from 'react';
 import Link from 'next/link';
-import { BentoGridDemo, BentoGridThirdDemo, BentoGridSecondDemo } from '../../components/bento-2x2';
+// import { BentoGridDemo, BentoGridThirdDemo, BentoGridSecondDemo } from '../../components/bento-2x2';
+import {
+  BentoGridSecondDemo,
+} from "../../components/bento-2x2";
+
 
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer"
