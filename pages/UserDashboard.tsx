@@ -30,7 +30,7 @@ const UserDashboard = () => {
       {/* Set the relative positioning and height */}
       <NavBar />
       <GridBackgroundDemo />
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute top-[100px] inset-0 flex items-center justify-center">
         {" "}
         {/* Center the content */}
         <InfiniteMovingCards items={userDashboardItems} />
