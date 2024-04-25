@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
             className="block text-priblue text-start no-underline font-normal leading-10 items-center align-middle gap-5 text-sm mx-4"
             onClick={() => setMenu("User")}
           >
-            <Link href={"/userDoshboard"}>
+            <Link href={"/UserDashboard"}>
               <p style={{ textDecoration: "none" }}>
                 • User
                 {menu === "User" ? <hr className="bg-secwhite" /> : <></>}
@@ -25,11 +25,11 @@ const Footer: React.FC = () => {
 
           <li
             className="block text-priblue text-start no-underline font-normal leading-10 items-center align-middle gap-5 text-sm mx-4"
-            onClick={() => setMenu("Matrixes")}
+            onClick={() => setMenu("Metrics")}
           >
-            <Link href={"/MatricsDashboard"}>
+            <Link href={"/Dashboards/MetricsDashboard"}>
               <p style={{ textDecoration: "none" }}>
-                • Matrixes {menu === "Matrixes" ? <hr /> : <></>}
+                • Metrics {menu === "Matrixes" ? <hr /> : <></>}
               </p>
             </Link>
           </li>
