@@ -52,7 +52,8 @@ const Deployment = props => {
         const response = await fetch('http://34.71.62.191:80/api/update', {
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'  // Ensures the server treats the sent data as JSON
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
             },
             body: JSON.stringify({
                 namespace: props.deployment.namespace,
@@ -63,8 +64,8 @@ const Deployment = props => {
                     "optimization priority": formData.priority
                 },
                 scaledObjectSpec: {
-                    minReplicaCount: formData.minReplicaCount,
-                    maxReplicaCount: formData.maxReplicaCount
+                    minReplicaCount: Number(formData.minReplicaCount),
+                    maxReplicaCount: Number(formData.maxReplicaCount)
                 }
             })
         });
@@ -88,6 +89,10 @@ const Deployment = props => {
         // Add your fetch API logic here to send `formData` to your backend
         const response = await fetch('http://34.71.62.191:80/api/create', {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
             body: JSON.stringify({
                 namespace: props.deployment.namespace,
                 deployment: props.deployment.name,
@@ -97,8 +102,8 @@ const Deployment = props => {
                     "optimization priority": formData.priority
                 },
                 scaledObjectSpec: {
-                    minReplicaCount: formData.minReplicaCount,
-                    maxReplicaCount: formData.maxReplicaCount
+                    minReplicaCount: Number(formData.minReplicaCount),
+                    maxReplicaCount: Number(formData.maxReplicaCount)
                 }
             })
         })
