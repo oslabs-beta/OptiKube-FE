@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { BackgroundGradientAnimation } from '../../components/background-gradient-animation';
-
+import { BasicLineChart } from 'components/BasicLineChart';
 
 export default function testPage() {
     return (
@@ -20,7 +20,7 @@ export default function testPage() {
                 </div>
             </BackgroundGradientAnimation>
 
-
+            <BasicLineChart />
         </div>
     )
 }

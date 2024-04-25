@@ -1,7 +1,8 @@
 // pages/placeholder-page.tsx
 import React from 'react';
 import Link from 'next/link';
-import { BentoGridDemo, BentoGridThirdDemo, BentoGridSecondDemo } from '../../components/bento-2x2';
+import { BentoGridSecondDemo } from '../../components/bento-2x2';
+import { GridBackgroundDemo } from '../../components/GridBackground'
 
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer"
@@ -10,7 +11,7 @@ const MetricsDashboard = () => {
   return (
     <div>
       <NavBar />
-
+      {/* <GridBackgroundDemo /> */}
       <p className="flex flex-col items-center justify-center h-90 bg-gradient-to-r from-yellow-500 via-red-500 to-pink-500 text-transparent bg-clip-text text-4xl font-bold m-20">Currently Under Construction</p>
       <div className='flex flex-col items-center justify-center'>
 
