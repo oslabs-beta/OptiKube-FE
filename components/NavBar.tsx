@@ -4,6 +4,8 @@ import classNames from "classnames";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import { cn } from "../public/utils/shadcnUI/cn";
 
+import Link from "next/link";
+
 
 const NavBar = () => {
   return (
@@ -29,7 +31,7 @@ const NavBar = () => {
 
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="text-zinc-200 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
-              Metrics{" "}
+              Dashboards{" "}
               <CaretDownIcon
                 className="text-zinc-200 relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
                 aria-hidden
@@ -37,24 +39,34 @@ const NavBar = () => {
             </NavigationMenu.Trigger>
             <NavigationMenu.Content className="absolute top-0 left-0 w-full sm:w-auto bg-slate-200">
               <ul className="m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px] sm:grid-flow-col sm:grid-rows-3">
-                <ListItem
-                  title="CPU Utilization"
-                  href="/primitives/docs/overview/introduction"
-                >
-                  Vislize how much CPU is utilized over GKE.
-                </ListItem>
-                <ListItem
-                  title="RAM Utilization"
-                  href="/primitives/docs/overview/getting-started"
-                >
-                  Vislize how much RAM is utilized over GKE.
-                </ListItem>
-                <ListItem
-                  title="GPU Utilization"
-                  href="/primitives/docs/guides/styling"
-                >
-                  Vislize how much GPU is utilized over GKE.
-                </ListItem>
+                <Link href="/Dashboards/MetricsDashboard" passHref>
+                  <ListItem
+                    title="Metrics Dashboard"
+                    href="/primitives/docs/overview/introduction"
+                  >
+                    View Deployment Metrics and Visualizations
+                  </ListItem>
+                </Link>
+
+
+                <Link href="/Dashboards/MoneyDashboard" passHref >
+                  <ListItem
+                    title="Cost Dashboard"
+                    href="/primitives/docs/overview/getting-started"
+                  >
+                    View Deployment Cost Metrics and Visualizations
+                  </ListItem>
+                </Link>
+
+
+                <Link href="/Dashboards/HPADashboard" passHref>
+                  <ListItem
+                    title="HPA Dashboard"
+                    href="/primitives/docs/guides/styling"
+                  >
+                    View HPA metrics and customize your HPA here
+                  </ListItem>
+                </Link>
               </ul>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
