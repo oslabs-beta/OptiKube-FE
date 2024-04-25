@@ -134,6 +134,10 @@ const Deployment = props => {
         try {
             const response = await fetch('http://34.71.62.191:80/api/delete', {
                 method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
                 body: JSON.stringify({
                     namespace: props.deployment.namespace,
                     deployment: props.deployment.name,
