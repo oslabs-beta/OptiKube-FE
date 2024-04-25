@@ -74,7 +74,7 @@ const Home = () => {
 
         < Boxes />
         <h1 className={cn("md:text-6xl text-xl text-white font-semibold relative z-20 mt-5")}>
-          Welcome to Optikube!
+          Welcome to OptiKube!
         </h1>
         <h3 className="mt-5 text-2xl text-gray-400 z-30 relative">
           Cost optimization at your fingertips
