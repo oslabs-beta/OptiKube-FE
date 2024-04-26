@@ -17,7 +17,8 @@ import { motion } from "framer-motion";
 import { LampContainer } from "../../components/lamp";
 import Deployment from "../../components/Deployment"; 
 import NavBar from "../../components/NavBar";
-import Footer from "../../components/Footer"
+import Footer from "../../components/Footer";
+import { GridBackgroundDemoNoText } from "components/GridBackgroundNoText";
 
 const HPADashboard = () => {
   const [deployments, setDeployments] = useState([]);
@@ -40,6 +41,9 @@ const HPADashboard = () => {
   return (
     <>
         <NavBar/>
+        <div className="fixed inset-0 z-[-1]">
+        <GridBackgroundDemoNoText />
+        </div>
         <div className="container mx-auto px-4">
             <h1 className="text-2xl font-bold text-center my-8">Deployments</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
