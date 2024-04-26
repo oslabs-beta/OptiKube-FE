@@ -177,13 +177,13 @@ const Deployment = props => {
     // }
     
     return (
-        <div className="p-4 bg-gray-50 rounded-lg shadow">
+        <div className="p-4 bg-blue-950 rounded-lg shadow">
             <div className="mb-4">
-                <h4 className="font-semibold text-lg">Deployment Details:</h4>
-                <p className="text-gray-700">
+                <h4 className="font-semibold text-zinc-200 text-lg">Deployment Details:</h4>
+                <p className="text-zinc-200">
                     <span className="font-medium">Name:</span> {props.deployment.name}
                 </p>
-                <p className="text-gray-700">
+                <p className="text-zinc-200">
                     <span className="font-medium">Namespace:</span> {props.deployment.namespace}
                 </p>
             </div>
@@ -193,7 +193,7 @@ const Deployment = props => {
                 </button>
             ) : (
                 <div className="space-y-2">
-                    <div className="text-gray-700">
+                    <div className="text-zinc-200">
                         <p><span className="font-medium">Workload Variability:</span> {kedaInfo.variability}</p>
                         <p><span className="font-medium">Application Criticality:</span> {kedaInfo.criticality}</p>
                         <p><span className="font-medium">Optimization Priority:</span> {kedaInfo.priority}</p>
