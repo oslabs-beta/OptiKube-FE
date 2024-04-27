@@ -49,7 +49,7 @@ const NavBar = () => {
                 </Link>
 
 
-                <Link href="/Dashboards/MoneyDashboard" passHref >
+                <Link href="/Dashboards/CostDashboard" passHref >
                   <ListItem
                     title="Cost Dashboard"
                     href="/primitives/docs/overview/getting-started"

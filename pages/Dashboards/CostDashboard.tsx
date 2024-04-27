@@ -1,93 +1,88 @@
 // @ts-ignore
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+
+import BarChart from "../../components/BarCharts";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 
-interface CostData {
-  timestamp: string;
-  value: number;
-}
-
 const CostDashboard = () => {
-  const [cpuCost, setCpuCost] = useState<CostData[] | undefined>([]);
+  const [cpuCost, setCpuCost] = useState({});
+  const [loadBalancerCost, setLoadBalancerCost] = useState({});
+  const [ramCost, setRamCost] = useState({});
 
   useEffect(() => {
-    const fetchCpuCost = async () => {
+    const fetchCost = async () => {
       try {
-        const response = await axios.get<CostData[]>(
+        const response = await axios.get(
           "http://localhost:9090/model/allocation?window=6h&aggregate=controllerKind,controller&accumulate=true"
         );
-        const cpuCostArr: CostData[] = [];
 
-        Object.keys(response.data).forEach((key) => {
-          const item = response.data[key];
-          console.log(">>> item: ", item);
+        const cpuCostObj = {};
+        const loadBalancerCostObj = {};
+        const rawCostObj = {};
 
-          Object.entries(item).forEach(([subKey, value]) => {
-            console.log(">>> subkey 1: ", subKey);
-            if (subKey === "cpuCost") {
-              console.log(">>> subkey: ", subKey);
-              console.log(">>> value: ", value);
-              cpuCostArr.push({ name: item.name, cpuCost: value });
-            }
-          });
+        const fetchedData = response.data.data[0];
+        console.log(">>> fetchedData: ", fetchedData);
+
+        const namespace = Object.keys(fetchedData);
+        namespace.forEach((subNameSpace) => {
+          cpuCostObj[subNameSpace] = fetchedData[subNameSpace].cpuCost;
+          loadBalancerCostObj[subNameSpace] =
+            fetchedData[subNameSpace].loadBalancerCost;
+          rawCostObj[subNameSpace] = fetchedData[subNameSpace].ramCost;
         });
 
-        console.log(">>> cpuCostArr: ", cpuCostArr);
-        setCpuCost(cpuCostArr); // Fixed syntax here
+        console.log(">>> cpuCostObj: ", cpuCostObj);
+        console.log(">>> loadBalancerCost value: ", loadBalancerCostObj);
+        console.log(">>> ramCost value: ", rawCostObj);
+
+        setCpuCost(cpuCostObj);
+        setLoadBalancerCost(loadBalancerCostObj);
+        setRamCost(rawCostObj);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchCpuCost();
+    fetchCost();
   }, []);
 
-  const TimeSeriesChart = () => {
-    if (!cpuCost) {
-      return <div>Loading...</div>; // Handle loading state
-    }
-
-    return (
-      <ResponsiveContainer width="100%" height={400}>
-        <LineChart
-          data={cpuCost}
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="timestamp" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="value"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center h-90">
+    <div className="flex flex-col">
       <NavBar />
-      <div>
-        <TimeSeriesChart />
+
+      <div className="flex flex-row">
+        <div className="w-1/2 p-4">
+          <BarChart data={cpuCost} xName="Namespace" yName="CPU Cost" />
+          <h1 className="font-bold justify-items-center text-center m-4">
+            Figure 1. Top 10 CPU Cost per Namespace
+          </h1>
+        </div>
+        <div className="w-1/2 p-4">
+          <BarChart
+            data={loadBalancerCost}
+            xName="Namespace"
+            yName="Network Cost"
+          />
+          <h1 className="font-bold justify-items-center text-center m-4">
+            Figure 2. Top 10 LoadBalancer Cost per Namespace
+          </h1>
+        </div>
       </div>
+      <div className="flex flex-row">
+        <div className="w-1/2 p-4">
+          <BarChart data={ramCost} xName="Namespace" yName="RAM Cost" />
+          <h1 className="font-bold justify-items-center text-center m-4">
+            Figure 3. Top 10 Raw Cost per Namespace
+          </h1>
+        </div>
+        <div className="w-1/2 p-4">
+
+        </div>
+      </div>
+
       <Footer />
     </div>
   );
