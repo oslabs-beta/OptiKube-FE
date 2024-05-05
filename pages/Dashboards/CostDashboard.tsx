@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
+import AreaChart from "../../components/AreaCharts";
 import BarChart from "../../components/BarCharts";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
@@ -186,7 +187,7 @@ const CostDashboard = () => {
           <h2 className="text-base ml-10"> time end: {timeEndPerNamespace} </h2>
           <div className="flex flex-row">
             <div className="w-1/2 p-4">
-              <BarChart
+              <AreaChart
                 data={cpuCostPerNamespace}
                 xName="Namespace"
                 yName="CPU Cost"
@@ -196,7 +197,7 @@ const CostDashboard = () => {
               </h1>
             </div>
             <div className="w-1/2 p-4">
-              <BarChart
+              <AreaChart
                 data={loadBalancerCostPerNamespace}
                 xName="Namespace"
                 yName="Network Cost"
@@ -208,7 +209,7 @@ const CostDashboard = () => {
           </div>
           <div className="flex flex-row">
             <div className="w-1/2 p-4">
-              <BarChart
+              <AreaChart
                 data={ramCostPerNamespace}
                 xName="Namespace"
                 yName="RAM Cost"
@@ -218,7 +219,7 @@ const CostDashboard = () => {
               </h1>
             </div>
             <div className="w-1/2 p-4">
-              <BarChart
+              <AreaChart
                 data={totalCostPerNamespace}
                 xName="Namespace"
                 yName="Total Cost"
