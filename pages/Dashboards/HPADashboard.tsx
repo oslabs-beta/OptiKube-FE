@@ -30,7 +30,7 @@ const HPADashboard = () => {
             //   const response = await fetch('http://optikube-operator-svc.optikube:8080/api');
               const data = await response.json();
               const deploymentItems = data.response.map((item, index) => 
-                  <Deployment deployment={item.deployment} key={index} optimization={item["optimization settings"] || null} scaler={item["scaler settings"] ? item["scaler settings"]["scaler settings:"] : null}/>
+                  <Deployment deployment={item.deployment} key={index} optimization={item["optimization settings"] || null} scaler={item["scaler settings"]}/>
               );
               setDeployments(deploymentItems);
           } catch (err) {

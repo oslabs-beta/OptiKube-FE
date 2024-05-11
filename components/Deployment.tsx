@@ -10,11 +10,12 @@ const Deployment = props => {
         variability: props.optimization ? props.optimization["workload variability:"] : null, 
         criticality: props.optimization ? props.optimization["application criticality:"] : null, 
         priority: props.optimization ? props.optimization["optimization priority:"] : null, 
-        score: props.optimization ? props.optimization["Optimization Score:"] : null,
+        score: props.optimization ? props.optimization["optimization score:"] : null,
         scalerName: props.scaler ? props.scaler["name:"] : null,
         minReplicaCount: props.scaler ? props.scaler["min replicas:"] : null,
         maxReplicaCount: props.scaler ? props.scaler["max replicas:"] : null,
         targetCPU: props.scaler ? props.scaler["target cpu utilization:"] : null,
+        minCPU: props.optimization ? props.optimization["min cpu request"]: null,
     })
     // useEffect(() => {
     //     const fetchKedaInfo = async () => {
@@ -61,7 +62,8 @@ const Deployment = props => {
                 settings: {
                     "workload variability": formData.variability,
                     "application criticality": formData.criticality,
-                    "optimization priority": formData.priority
+                    "optimization priority": formData.priority,
+                    "min cpu request": Number(formData.minCPU)
                 },
                 scaledObjectSpec: {
                     minReplicaCount: Number(formData.minReplicaCount),
@@ -71,17 +73,18 @@ const Deployment = props => {
         });
         const data = await response.json();
         const optimization = data.response["optimization settings"];
-        const scaler = data.response["scaler settings"]["scaler settings:"]
+        const scaler = data.response["scaler settings"]
         setKedaInfo({
             status: true, 
             variability: optimization["workload variability:"], 
             criticality: optimization["application criticality:"], 
             priority: optimization["optimization priority:"], 
-            score: optimization["Optimization Score:"],
+            score: optimization["optimization score:"],
             scalerName: scaler["name:"],
             minReplicaCount: scaler["min replicas:"],
             maxReplicaCount: scaler["max replicas:"],
             targetCPU: scaler["target cpu utilization:"],
+            minCPU: optimization["min cpu request"],
         })
     }
     const handleCreateAutoscaler = async (formData) => {
@@ -99,7 +102,8 @@ const Deployment = props => {
                 settings: {
                     "workload variability": formData.variability,
                     "application criticality": formData.criticality,
-                    "optimization priority": formData.priority
+                    "optimization priority": formData.priority,
+                    "min cpu request": Number(formData.minCPU)
                 },
                 scaledObjectSpec: {
                     minReplicaCount: Number(formData.minReplicaCount),
@@ -109,17 +113,18 @@ const Deployment = props => {
         })
         const data = await response.json();
         const optimization = data.response["optimization settings"];
-        const scaler = data.response["scaler settings"]["scaler settings:"]
+        const scaler = data.response["scaler settings"];
         setKedaInfo({
             status: true, 
             variability: optimization["workload variability:"], 
             criticality: optimization["application criticality:"], 
             priority: optimization["optimization priority:"], 
-            score: optimization["Optimization Score:"],
+            score: optimization["optimization score:"],
             scalerName: scaler["name:"],
             minReplicaCount: scaler["min replicas:"],
             maxReplicaCount: scaler["max replicas:"],
             targetCPU: scaler["target cpu utilization:"],
+            minCPU: optimization["min cpu request"],
         })
     };
 
@@ -155,6 +160,7 @@ const Deployment = props => {
                     minReplicaCount: null,
                     maxReplicaCount: null,
                     targetCPU: null,
+                    minCPU: null,
                 })
             }
             if (!response.ok) throw new Error('Failed to delete autoscaler');
@@ -202,6 +208,7 @@ const Deployment = props => {
                         <p><span className="font-medium">Min Replicas:</span> {kedaInfo.minReplicaCount}</p>
                         <p><span className="font-medium">Max Replicas:</span> {kedaInfo.maxReplicaCount}</p>
                         <p><span className="font-medium">Target CPU Utilization:</span> {kedaInfo.targetCPU}</p>
+                        <p><span className="font-medium">Min CPU Request:</span> {kedaInfo.minCPU}</p>
                     </div>
                     <button
                         onClick={openUpdateModal} 

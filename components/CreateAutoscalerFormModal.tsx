@@ -6,12 +6,13 @@ const AutoscalerFormModal = ({ isOpen, onClose, onSubmit }) => {
     const [priority, setPriority] = useState('');
     const [minReplicaCount, setMinReplicaCount] = useState('');
     const [maxReplicaCount, setMaxReplicaCount] = useState('');
+    const [minCPU, setMinCPU] = useState('');
 
     if (!isOpen) return null;
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (!variability || !criticality || !priority || !minReplicaCount || !maxReplicaCount) {
+        if (!variability || !criticality || !priority || !minReplicaCount || !maxReplicaCount || !minCPU) {
             alert('All fields must be filled!');
             return;
         }
@@ -20,7 +21,8 @@ const AutoscalerFormModal = ({ isOpen, onClose, onSubmit }) => {
             criticality,
             priority,
             minReplicaCount,
-            maxReplicaCount
+            maxReplicaCount,
+            minCPU
         });
     };
 
@@ -63,6 +65,10 @@ const AutoscalerFormModal = ({ isOpen, onClose, onSubmit }) => {
                     <label className="block mb-2">
                         Max Replica Count:
                         <input type="number" value={maxReplicaCount} onChange={e => setMaxReplicaCount(e.target.value)} className="mt-1 p-2 w-full border rounded"/>
+                    </label>
+                    <label className="block mb-2">
+                        Min CPU Request:
+                        <input type="number" value={minCPU} onChange={e => setMinCPU(e.target.value)} className="mt-1 p-2 w-full border rounded"/>
                     </label>
                     <div className="flex justify-between">
                         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
