@@ -7,3 +7,17 @@ node_modules
 .git
 .gitignore
 .dockerignore
+
+# Exclude yaml files for K8s configs
+kubernetes/
+
+# Exclude README.md
+README.md
+
+# Exclude build output
+#.next/
+
+# Configuration files
+#*.config.js
+#!next.config.js
+#!tailwind.config.js
