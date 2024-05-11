@@ -30,7 +30,7 @@ export function BentoGridSecondDemo() {
                     description={item.description}
                     header={item.header}
                     className={item.className}
-                    icon={item.icon}
+                    // icon={item.icon}
                 />
             ))}
         </BentoGrid>
@@ -57,27 +57,27 @@ const items = [
             </div>
         ),
         className: "md:col-span-2",
-        icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+        // icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
     },
-    // {
-    //     title: "Generic Graph of Metric here",
-    //     description:
-    //         "Generic Description of graph here",
-    //     // header: <Skeleton />,
-    //     header: (
-    //         <div className="h-full w-full relative rounded-xl">
-    //             {/* <Image
-    //                 src={genericGraph}
-    //                 alt="Graph"
-    //                 layout="fill" // This will make the image fill the container
-    //                 objectFit="cover"
-    //             /> */}
-    //             {/* <BarGraph /> */}
-    //         </div>
-    //     ),
-    //     className: "md:col-span-1",
-    //     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
-    // },
+    {
+        title: "Generic Graph of Metric here",
+        description:
+            "Generic Description of graph here",
+        // header: <Skeleton />,
+        header: (
+            <div className="h-full w-full relative rounded-xl">
+                <Image
+                    src={genericGraph}
+                    alt="Graph"
+                    layout="fill" // This will make the image fill the container
+                    objectFit="cover"
+                />
+                {/* <BarGraph /> */}
+            </div>
+        ),
+        className: "md:col-span-1",
+        // icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+    },
     {
         title: "Total Cost for Active Deployments",
         description: "Dollar cost for your active deployments.",
@@ -94,24 +94,24 @@ const items = [
             </div>
         ),
         className: "md:col-span-2",
-        icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+        // icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
     },
-    // {
-    //     title: "Generic Graph of Metric here",
-    //     description:
-    //         "Generic Description of graph here",
-    //     // header: <Skeleton />,
-    //     header: (
-    //         <div className="h-full w-full relative rounded-xl">
-    //             {/* <Image
-    //                 src={genericGraph}
-    //                 alt="Graph"
-    //                 layout="fill" // This will make the image fill the container
-    //                 objectFit="cover"
-    //             /> */}
-    //         </div>
-    //     ),
-    //     className: "md:col-span-1",
-    //     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
-    // },
+    {
+        title: "Generic Graph of Metric here",
+        description:
+            "Generic Description of graph here",
+        // header: <Skeleton />,
+        header: (
+            <div className="h-full w-full relative rounded-xl">
+                <Image
+                    src={genericGraph}
+                    alt="Graph"
+                    layout="fill" // This will make the image fill the container
+                    objectFit="cover"
+                />
+            </div>
+        ),
+        className: "md:col-span-1",
+        // icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+    },
 ];

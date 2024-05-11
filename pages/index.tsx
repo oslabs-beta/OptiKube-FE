@@ -61,15 +61,15 @@ const Home = () => {
 
         <div className="absolute top-0 right-0 m-4 z-50">
 
-          <Link href="TestPages/testPage" passHref>
+          {/* <Link href="TestPages/testPage" passHref>
             <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 z-30 relative">Test Page</button>
-          </Link>
+          </Link> */}
         </div>
         <div className="absolute top-12 right-0 m-4 z-50">
 
-          <Link href="TestPages/testPage2" passHref>
+          {/* <Link href="TestPages/testPage2" passHref>
             <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 z-30 relative">HPA Form </button>
-          </Link>
+          </Link> */}
         </div>
 
         < Boxes />

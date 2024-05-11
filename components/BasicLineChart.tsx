@@ -51,11 +51,7 @@ export function BasicLineChart() {
     // render(){
         return (
             <div>
-                {/* <h3>
-                    Fake kubecost metrics!
-                </h3> */}
-
-                {/* <ResponsiveContainer width="100%" height="100%"> */}
+                <div className='bg-slate-800'>
                     <LineChart
                         width={550}
                         height={200}
@@ -76,51 +72,7 @@ export function BasicLineChart() {
                         <Line type="monotone" dataKey="DummyNGINX" stroke="#82ca9d" />
                     </LineChart>
                 {/* </ResponsiveContainer> */}
+                </div>
             </div>
         )
-    // }
 }
-
-// import React from 'react';
-// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-
-// const data = [
-//   {
-//     name: 'Day 1',
-//     totalCost: 10,
-//   },
-//   {
-//     name: 'Day 2',
-//     totalCost: 11,
-//   },
-//   // ... Other days
-//   {
-//     name: 'Day 7',
-//     totalCost: 10,
-//   },
-// ];
-
-// export function BasicLineChart() {
-//   return (
-//     <div style={{ width: '100%', height: 300 }}>
-//       <LineChart
-//         width={550}
-//         height={200}
-//         data={data}
-//         margin={{
-//           top: 5,
-//           right: 30,
-//           left: 20,
-//           bottom: 5,
-//         }}
-//       >
-//         <CartesianGrid strokeDasharray="3 3" />
-//         <XAxis dataKey="name" />
-//         <YAxis />
-//         <Tooltip />
-//         <Legend />
-//         <Line type="monotone" dataKey="totalCost" stroke="#8884d8" activeDot={{ r: 8 }} />
-//       </LineChart>
-//     </div>
-//   );
-// }
