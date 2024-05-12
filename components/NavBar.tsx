@@ -21,7 +21,7 @@ const NavBar = () => {
             </NavigationMenu.Trigger>
             <NavigationMenu.Content className='bg-slate-200 data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-auto sm:w-auto'>
               <ul className='one m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px]'>
-                <ListItem href='https://stitches.dev/' title='Overview'>
+                <ListItem href='/UserDashboard' title='Overview'>
                   Get high-level information regarding your cluster.
                 </ListItem>
               </ul>
@@ -56,12 +56,12 @@ const NavBar = () => {
                   </ListItem>
                 </Link>
 
-                <Link href='/Dashboards/TrendsDashboard' passHref>
+                <Link href='/Dashboards/SavingDashboard' passHref>
                   <ListItem
-                    title='Trends Dashboard'
+                    title='Saving Dashboard'
                     href='/primitives/docs/guides/styling'
                   >
-                    Trends Visualizations
+                    Saving Visualizations
                   </ListItem>
                 </Link>
               </ul>
