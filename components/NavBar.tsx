@@ -70,7 +70,7 @@ const NavBar = () => {
 
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className='text-zinc-200 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]'>
-              HPA{' '}
+              HPA
               <CaretDownIcon
                 className='text-zinc-200 relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180'
                 aria-hidden
@@ -78,8 +78,11 @@ const NavBar = () => {
             </NavigationMenu.Trigger>
             <NavigationMenu.Content className='bg-slate-200 data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-full sm:w-auto'>
               <ul className='one m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px]'>
-                <ListItem href='https://stitches.dev/' title='Overview'>
-                  Dive into the cost analysis
+                <ListItem
+                  href='/Dashboards/HPADashboard'
+                  title='Custom Scaling'
+                >
+                  Dive into the HPA Custom Setup
                 </ListItem>
               </ul>
             </NavigationMenu.Content>

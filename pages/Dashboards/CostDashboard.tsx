@@ -233,9 +233,9 @@ const CostDashboard = () => {
       {displayOption == 'namespace' && (
         <>
           <h2 className='text-base ml-10'>
-            time start: {timeStartPerNamespace}
+            Time Start: {timeStartPerNamespace}
           </h2>
-          <h2 className='text-base ml-10'> time end: {timeEndPerNamespace} </h2>
+          <h2 className='text-base ml-10'> Time End: {timeEndPerNamespace} </h2>
           <div className='flex flex-row'>
             <div className='w-1/2 p-4'>
               <BarChart

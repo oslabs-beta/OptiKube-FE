@@ -15,101 +15,136 @@ import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 
 const TrendsDashboard = () => {
-  const [kubecost, setKubecost] = useState({});
+  const [timeOption, setTimeOption] = useState('7d');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [timeStart, setTimeStart] = useState('');
+  const [timeEnd, setTimeEnd] = useState('');
+  const [data, setData] = useState([
+    {
+      Namespace: null,
+      CPU: null,
+      GPU: null,
+      RAW: null,
+      Network: null,
+      pvBytes: null,
+      Efficiency: null,
+    },
+  ]);
 
-  const rows = ['CPU', 'RAW', 'LoadBalance', 'TotalCost', 'Saving'];
-
-  const columns = [
-    '__idle__',
-    'kube-system',
-    'kubecost',
-    'dummy-nginx',
-    'optikube',
-    'keda',
-    'dummy-php',
-    'gmp-system',
-    '__unmounted__',
-  ];
-
-  const fetchTrend = async (name) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:9090/model/allocation/trends?window=1d&aggregate=namespace&names=${name}&accumulate=true`
-      );
-
-      const totalCostValue =
-        Number(
-          response.data.data.sets[0]?.allocationTrends?.kubecost?.trends?.costs
-            ?.totalCost?.relativeChange?.value
-        ) * 100;
-      console.log('>>> totalCostValue', totalCostValue);
-      return totalCostValue;
-    } catch (error) {
-      console.error('Error fetching trend:', error);
-      return 0; // Return a default value if fetching fails
-    }
+  const handleTimeChange = (event) => {
+    const newTimeOption = event.target.value;
+    setTimeOption(newTimeOption);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const results = await Promise.all(
-          columns.map((column) => fetchTrend(column)) // Use column instead of row
+        const response = await axios.get(
+          `http://localhost:9090/model/allocation?window=${timeOption}&aggregate=namespace&accumulate=true`
         );
-        const kubecostData = {};
-        results.forEach((totalCost, index) => {
-          kubecostData[columns[index]] = totalCost;
+        // console.log('>>> response.data: ', response.data.data[0]);
+
+        const fetchedData = response.data.data[0];
+        const fetchTimeStart = fetchedData['__idle__'].start;
+        const fetchTimeEnd = fetchedData['__idle__'].end;
+        setTimeStart(fetchTimeStart);
+        setTimeEnd(fetchTimeEnd);
+
+        const entries = Object.entries(fetchedData);
+
+        const newData = []; // Initialize a new array to hold the data for all namespaces
+        entries.forEach(([key, value]) => {
+          newData.push({
+            Namespace: fetchedData[key].name,
+            CPU: fetchedData[key].cpuCores,
+            GPU: fetchedData[key].gpuCount,
+            RAW: fetchedData[key].ramBytes,
+            Network: fetchedData[key].networkTransferBytes,
+            pvBytes: fetchedData[key].pvBytes,
+            Efficiency: Number(fetchedData[key].totalEfficiency) * 100,
+          });
         });
-        setKubecost(kubecostData);
-        console.log('kubecost:', kubecostData);
+
+        setData(newData);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching trends:', error);
+        setError(error);
+        setLoading(false);
+        console.error(error);
       }
     };
 
     fetchData();
-  }, []); // Empty dependency array for useEffect to run once on mount
+  }, [timeOption]);
+
+  useEffect(() => {
+    if (data && Object.values(data).some((item) => item !== null)) {
+      console.log('>>> current data:', data);
+    }
+  }, [data]);
 
   return (
     <div className='flex flex-col'>
       <NavBar />
-      <div className='flex flex-row justify-left mt-14 mb-0 ml-8 mx-3'>
+      <div className='flex flex-col items-left mt-14 mb-0 ml-8 mx-3'>
         <h2 className='font-bold text-2xl'>
-          Cumulative cost for last 7 days by namespace
+          <label>Cumulative cost for last </label>
+          <select
+            id='display-option'
+            value={timeOption}
+            onChange={handleTimeChange}
+            className='w-30 px-3 py-1 border border-gray-300 rounded font-bold mx-2 '
+          >
+            <option value='1d'>1d</option>
+            <option value='7d'>7d</option>
+            <option value='15d'>15d</option>
+            <option value='30d'>30d</option>
+          </select>
+          <label> by namespace</label>
         </h2>
+        <div className='flex flex-col'>
+          <h2 className='text-base ml-2 mt-6 mb-2'> Time Start: {timeStart}</h2>
+          <h2 className='text-base ml-2'> Time End: {timeEnd} </h2>
+        </div>
       </div>
-      <div className='flex flex-row  bg-slate-200 my-6 mx-3'>
-        <Table isStriped aria-label='Example static collection table'>
+
+      <div className='flex flex-row items-center bg-slate-200 my-6 mx-3'>
+        <Table>
           <TableHeader className='font-bold'>
             <TableColumn>Namespace</TableColumn>
-            <TableColumn>CPU</TableColumn>
-            <TableColumn>GPU</TableColumn>
-            <TableColumn>RAW</TableColumn>
-            <TableColumn>Network</TableColumn>
-            <TableColumn>LoadBalance</TableColumn>
-            <TableColumn>Efficiency</TableColumn>
+            <TableColumn>cpuCores</TableColumn>
+            <TableColumn>gpuCount</TableColumn>
+            <TableColumn>ramBytes</TableColumn>
+            <TableColumn>networkTransferBytes</TableColumn>
+            <TableColumn>pvBytes</TableColumn>
+            <TableColumn>totalEfficiency(%)</TableColumn>
           </TableHeader>
+
           <TableBody>
-            {/* <TableRow key='1'>
-              <TableCell>Tony Reichert</TableCell>
-              <TableCell>CEO</TableCell>
-              <TableCell>Active</TableCell>
-            </TableRow>
-            <TableRow key='2'>
-              <TableCell>Zoey Lang</TableCell>
-              <TableCell>Technical Lead</TableCell>
-              <TableCell>Paused</TableCell>
-            </TableRow>
-            <TableRow key='3'>
-              <TableCell>Jane Fisher</TableCell>
-              <TableCell>Senior Developer</TableCell>
-              <TableCell>Active</TableCell>
-            </TableRow>
-            <TableRow key='4'>
-              <TableCell>William Howard</TableCell>
-              <TableCell>Community Manager</TableCell>
-              <TableCell>Vacation</TableCell>
-            </TableRow> */}
+            {data &&
+              !loading &&
+              data.map((item, index) =>
+                item !== null ? (
+                  <TableRow key={index}>
+                    <TableCell className='text-center'>
+                      {item.Namespace}
+                    </TableCell>
+                    <TableCell className='text-center'>{item.CPU}</TableCell>
+                    <TableCell className='text-center'>{item.GPU}</TableCell>
+                    <TableCell className='text-center'>{item.RAW}</TableCell>
+                    <TableCell className='text-center'>
+                      {item.Network}
+                    </TableCell>
+                    <TableCell className='text-center'>
+                      {item.pvBytes}
+                    </TableCell>
+                    <TableCell className='text-center'>
+                      {item.Efficiency}
+                    </TableCell>
+                  </TableRow>
+                ) : null
+              )}
           </TableBody>
         </Table>
       </div>
