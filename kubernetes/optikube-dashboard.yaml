@@ -1,0 +1,45 @@
+# Optikube Dashboard Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: optikube-dashboard
+  namespace: optikube
+  labels:
+    app: optikube-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: optikube-dashboard
+  template:
+    metadata:
+      labels:
+        app: optikube-dashboard
+    spec:
+      containers:
+      - name: optikube-dashboard
+        image: optikube/optikube-dashboard:latest
+        ports:
+        - containerPort: 3000
+        resources: 
+          requests:
+            cpu: "150m"
+            memory: "150Mi"
+          limits:
+            cpu: "250m"
+            memory: "250Mi"
+---
+# Optikube Dashboard Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: optikube-dashboard-svc
+  namespace: optikube
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  selector:
+    app: optikube-dashboard
