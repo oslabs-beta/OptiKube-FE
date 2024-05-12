@@ -9,9 +9,9 @@ import Link from "next/link";
 
 const NavBar = () => {
   return (
-    <div className="h-12 bg-blue-950 m-0">
+    <div className="h-12 bg-slate-800 border border-slate-700 m-0">
       <NavigationMenu.Root className="relative z-50 flex w-screen justify-center">
-        <NavigationMenu.List className="center shadow-blackA4 m-1 flex list-none rounded-[6px] bg-blue-950 p-1 px-8">
+        <NavigationMenu.List className="center shadow-blackA4 m-1 flex list-none rounded-[6px] bg-slate-800 p-1 px-8">
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="text-zinc-200 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-4 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
               User{" "}
@@ -22,7 +22,7 @@ const NavBar = () => {
             </NavigationMenu.Trigger>
             <NavigationMenu.Content className="bg-slate-200 data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-auto sm:w-auto">
               <ul className="one m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px]">
-                <ListItem href="https://stitches.dev/" title="Overview">
+                <ListItem href="/UserDashboard" title="Overview">
                   Get high-level information regarding your cluster.
                 </ListItem>
               </ul>
