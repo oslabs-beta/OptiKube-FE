@@ -100,14 +100,12 @@ const UserDashboard = () => {
       <NavBar />
       <div className='flex flex-row'>
         <div className='w-1/2 p-4 flex flex-col items-left mt-14 mb-0 ml-8 mx-3'>
-          <h2 className='font-bold text-2xl'>Daily Cost for the Last Week</h2>
-          <div className='flex flex-col'>
-            <h2 className='text-base ml-2 mt-6 mb-2'>
-              Time Start: {timeStartWeek}
-            </h2>
-            <h2 className='text-base ml-2'> Time End: {timeEndWeek} </h2>
+          <h2 className='font-bold text-2xl '>Daily Cost for the Last Week</h2>
+          <div className='flex flex-col shadow-inner ml-2 mt-4 mb-1'>
+            <h2 className='text-base ml-2 mt-4'>Time Start: {timeStartWeek}</h2>
+            <h2 className='text-base ml-2 mt-2'>Time End: {timeEndWeek} </h2>
           </div>
-          <div className='pt-10'>
+          <div className='pt-10 shadow-lg'>
             {serverDataWeek.length > 0 && (
               <AreaCharts
                 data={serverDataWeek}
@@ -120,27 +118,16 @@ const UserDashboard = () => {
 
         <div className='w-1/2 p-4 flex flex-col items-left mt-14 mb-0 ml-8 mx-3'>
           <h2 className='font-bold text-2xl'>Weekly Cost per Category</h2>
-          <div className='flex flex-col'>
-            <h2 className='text-base ml-2 mt-6 mb-2'>
-              Time Start: {timeStartDay}
-            </h2>
-            <h2 className='text-base ml-2'> Time End: {timeEndDay} </h2>
+          <div className='flex flex-col shadow-inner ml-2 mt-4 mb-1'>
+            <h2 className='text-base ml-2 mt-4'>Time Start: {timeStartDay}</h2>
+            <h2 className='text-base ml-2 mt-4'>Time End: {timeEndDay} </h2>
           </div>
-          <div className='justify-center mt-6'>
-            <PieChart width={400} height={400}>
-              <Pie
-                dataKey='value'
-                isAnimationActive={false}
-                data={allocationData}
-                cx={150}
-                cy={150}
-                outerRadius={140}
-                // fill='#8884d8'
-                label
-              />
-              <Tooltip />
-              <Legend />
-            </PieChart>
+          <div className='pt-10 shadow-lg text-center'>
+            <DonutCharts
+              data={allocationData}
+              xName='Resource Categry'
+              yName='Cost'
+            />
           </div>
         </div>
       </div>

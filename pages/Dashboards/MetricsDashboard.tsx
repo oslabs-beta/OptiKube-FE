@@ -110,7 +110,7 @@ const TrendsDashboard = () => {
 
       <div className='flex flex-row items-center bg-slate-200 my-6 mx-3'>
         <Table>
-          <TableHeader className='font-bold'>
+          <TableHeader className='font-bold bg-slate-700 text-white'>
             <TableColumn>Namespace</TableColumn>
             <TableColumn>cpuCores</TableColumn>
             <TableColumn>gpuCount</TableColumn>

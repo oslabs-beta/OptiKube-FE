@@ -6,7 +6,7 @@ const DynamicApexCharts = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
 
-const BarChart = ({ data, xName, yName }) => {
+const DonutChart = ({ data, xName, yName }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -14,31 +14,28 @@ const BarChart = ({ data, xName, yName }) => {
       typeof window !== 'undefined' &&
       chartRef.current &&
       data &&
-      Object.keys(data).length > 0
+      data.length > 0
     ) {
       // Dynamically import ApexCharts only when window is defined (client-side)
       import('apexcharts').then(({ default: ApexCharts }) => {
-        const sortedData = Object.entries(data)
-          .sort((a: [string, number], b: [string, number]) => b[1] - a[1]) // Sort by value
-          .slice(0, 10); // Take top 10 data points
-
-        const metrixesKeys = sortedData.map(([key]) => key);
-        const metrixesValues = sortedData.map(([, value]) => value);
-
         const options = {
-          series: [{ name: yName, data: metrixesValues }],
-          chart: { height: 350, width: 600, type: 'pie' },
-          xaxis: { categories: metrixesKeys },
+          series: data.map((item) => item.value),
+          labels: data.map((item) => item.name),
+          chart: {
+            height: 500,
+            type: 'donut',
+          },
           plotOptions: {
-            bar: {
-              dataLabels: { position: 'top' }, // Show labels at the top of each bar
+            pie: {
+              donut: {
+                size: '70%', // Adjust the size of the donut chart
+              },
             },
           },
           legend: {
             show: true, // Show legend
             position: 'bottom', // Position legend at the bottom
           },
-          dataLabels: { enabled: false },
         };
 
         const chart = new ApexCharts(chartRef.current, options);
@@ -50,9 +47,9 @@ const BarChart = ({ data, xName, yName }) => {
         };
       });
     }
-  }, [data, xName, yName]);
+  }, [data]);
 
   return <div className='w-1/2 p-4' ref={chartRef} />;
 };
 
-export default BarChart;
+export default DonutChart;
