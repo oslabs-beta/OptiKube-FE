@@ -141,11 +141,6 @@ const UserDashboard = () => {
               <Tooltip />
               <Legend />
             </PieChart>
-            {/* <DonutCharts
-              data={allocationData}
-              xName='Time'
-              yName='Total Cost'
-            /> */}
           </div>
         </div>
       </div>
