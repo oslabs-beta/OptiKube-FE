@@ -6,18 +6,28 @@ const DynamicApexCharts = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
 
-const AreaChart = ({ data, xName, yName }) => {
+const BarChart = ({ data, xName, yName }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
-    if (chartRef.current && data && data.length > 0) {
+    if (
+      typeof window !== 'undefined' &&
+      chartRef.current &&
+      data &&
+      Object.keys(data).length > 0
+    ) {
+      // Dynamically import ApexCharts only when window is defined (client-side)
       import('apexcharts').then(({ default: ApexCharts }) => {
-        const metrixesKeys = data.map((item) => item.timeStart);
-        const metrixesValues = data.map((item) => item.totalCost);
+        const sortedData = Object.entries(data)
+          .sort((a: [string, number], b: [string, number]) => b[1] - a[1]) // Sort by value
+          .slice(0, 10); // Take top 10 data points
+
+        const metrixesKeys = sortedData.map(([key]) => key);
+        const metrixesValues = sortedData.map(([, value]) => value);
 
         const options = {
           series: [{ name: yName, data: metrixesValues }],
-          chart: { height: 350, width: 600, type: 'area' },
+          chart: { height: 350, width: 600, type: 'pie' },
           xaxis: { categories: metrixesKeys },
           plotOptions: {
             bar: {
@@ -34,6 +44,7 @@ const AreaChart = ({ data, xName, yName }) => {
         const chart = new ApexCharts(chartRef.current, options);
         chart.render();
 
+        // Clean up function to destroy the chart when the component unmounts
         return () => {
           chart.destroy();
         };
@@ -44,4 +55,4 @@ const AreaChart = ({ data, xName, yName }) => {
   return <div className='w-1/2 p-4' ref={chartRef} />;
 };
 
-export default AreaChart;
+export default BarChart;

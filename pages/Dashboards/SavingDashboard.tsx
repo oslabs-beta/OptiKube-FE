@@ -11,11 +11,9 @@ const MetricsDashboard = () => {
     <div className='relative min-h-screen flex flex-col items-center justify-start'>
       <NavBar />
       <div className='absolute inset-0 z-[-1]'></div>
-      {/* Reduced the margin and added a smaller top margin */}
       <p className='flex self-stretch left-1 bg-gradient-to-b from-neutral-200 to-neutral-500 text-transparent bg-clip-text text-4xl font-bold mt-5 mb-2'>
         Metrics Dashboard
       </p>
-      {/* Container for charts with controlled z-index and margin-top */}
       <div className='self-stretch flex flex-col items-center z-10 mt-4'>
         <BentoGridSecondDemo />
       </div>

@@ -52,7 +52,6 @@ const TrendsDashboard = () => {
         setTimeEnd(fetchTimeEnd);
 
         const entries = Object.entries(fetchedData);
-
         const newData = []; // Initialize a new array to hold the data for all namespaces
         entries.forEach(([key, value]) => {
           newData.push({

@@ -5,6 +5,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@angular/core": "^17.3.8",
     "@nextui-org/table": "^2.0.33",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-navigation-menu": "^1.1.4",
