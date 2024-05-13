@@ -235,9 +235,12 @@ const CostDashboard = () => {
           <h2 className='text-base ml-10'>
             Time Start: {timeStartPerNamespace}
           </h2>
-          <h2 className='text-base ml-10'> Time End: {timeEndPerNamespace} </h2>
-          <div className='flex flex-row'>
-            <div className='w-1/2 p-4'>
+          <h2 className='text-base ml-10 mb-4'>
+            {' '}
+            Time End: {timeEndPerNamespace}{' '}
+          </h2>
+          <div className='flex flex-row shadow-lg'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={cpuCostPerNamespace}
                 xName='Namespace'
@@ -247,7 +250,7 @@ const CostDashboard = () => {
                 Figure 1. CPU Cost per Namespace per {timeOption}
               </h1>
             </div>
-            <div className='w-1/2 p-4'>
+            <div className='w-1/2 p-4 shadow-inner '>
               <BarChart
                 data={loadBalancerCostPerNamespace}
                 xName='Namespace'
@@ -258,8 +261,8 @@ const CostDashboard = () => {
               </h1>
             </div>
           </div>
-          <div className='flex flex-row'>
-            <div className='w-1/2 p-4'>
+          <div className='flex flex-row shadow-lg'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={ramCostPerNamespace}
                 xName='Namespace'
@@ -269,7 +272,7 @@ const CostDashboard = () => {
                 Figure 3. Raw Cost per Namespace per {timeOption}
               </h1>
             </div>
-            <div className='w-1/2 p-4'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={totalCostPerNamespace}
                 xName='Namespace'
@@ -286,9 +289,9 @@ const CostDashboard = () => {
       {displayOption == 'node' && (
         <>
           <h2 className='text-base ml-10'>time start: {timeStartPerNode}</h2>
-          <h2 className='text-base ml-10'> time end: {timeEndPerNode} </h2>
-          <div className='flex flex-row'>
-            <div className='w-1/2 p-4'>
+          <h2 className='text-base ml-10 mb-4'> time end: {timeEndPerNode} </h2>
+          <div className='flex flex-row shadow-lg'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={cpuCostPerNode}
                 xName='Node Name'
@@ -298,7 +301,7 @@ const CostDashboard = () => {
                 Figure 1. CPU Cost per Node per {timeOption}
               </h1>
             </div>
-            <div className='w-1/2 p-4'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={loadBalancerCostPerNode}
                 xName='Node Name'
@@ -309,7 +312,7 @@ const CostDashboard = () => {
               </h1>
             </div>
           </div>
-          <div className='flex flex-row'>
+          <div className='flex flex-row shadow-lg'>
             <div className='w-1/2 p-4'>
               <BarChart
                 data={ramCostPerNode}
@@ -320,7 +323,7 @@ const CostDashboard = () => {
                 Figure 3. Raw Cost per Node per {timeOption}
               </h1>
             </div>
-            <div className='w-1/2 p-4'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={totalCostPerNode}
                 xName='Namespace'
@@ -339,12 +342,12 @@ const CostDashboard = () => {
           <h2 className='text-base ml-10'>
             time start: {timeStartPerDeployment}
           </h2>
-          <h2 className='text-base ml-10'>
+          <h2 className='text-base ml-10 mb-4'>
             {' '}
             time end: {timeEndPerDeployment}{' '}
           </h2>
-          <div className='flex flex-row'>
-            <div className='w-1/2 p-4'>
+          <div className='flex flex-row shadow-lg'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={cpuCostPerDeployment}
                 xName='Namespace'
@@ -354,7 +357,7 @@ const CostDashboard = () => {
                 Figure 1. Top 10 CPU Cost per Deployment per {timeOption}
               </h1>
             </div>
-            <div className='w-1/2 p-4'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={loadBalancerCostPerDeployment}
                 xName='Namespace'
@@ -366,8 +369,8 @@ const CostDashboard = () => {
               </h1>
             </div>
           </div>
-          <div className='flex flex-row'>
-            <div className='w-1/2 p-4'>
+          <div className='flex flex-row shadow-lg'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={ramCostPerDeployment}
                 xName='Namespace'
@@ -377,7 +380,7 @@ const CostDashboard = () => {
                 Figure 3. Top 10 Raw Cost per Deployment per {timeOption}
               </h1>
             </div>
-            <div className='w-1/2 p-4'>
+            <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
                 data={totalCostPerDeployment}
                 xName='Namespace'
