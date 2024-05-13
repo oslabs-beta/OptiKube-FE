@@ -22,7 +22,8 @@ const NavBar = () => {
             <NavigationMenu.Content className='bg-slate-200 data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-auto sm:w-auto'>
               <ul className='one m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px]'>
                 <ListItem href='/UserDashboard' title='Overview'>
-                  Get high-level information regarding your cluster.
+                  Get high-level information regarding your cluster for the Last
+                  Week.
                 </ListItem>
               </ul>
             </NavigationMenu.Content>
@@ -43,7 +44,8 @@ const NavBar = () => {
                     title='Metrics Dashboard'
                     href='/primitives/docs/overview/introduction'
                   >
-                    View Deployment Metrics and Visualizations
+                    View the cumulative cost for a window option and understand
+                    the allocated resrouces of your cluster, based by Namespace
                   </ListItem>
                 </Link>
 
@@ -52,7 +54,8 @@ const NavBar = () => {
                     title='Cost Dashboard'
                     href='/primitives/docs/overview/getting-started'
                   >
-                    View Deployment Cost Metrics and Visualizations
+                    View the resources allocated to Kubernetes workloads per
+                    Namespace, Node, or Deployment
                   </ListItem>
                 </Link>
 
@@ -61,7 +64,8 @@ const NavBar = () => {
                     title='Saving Dashboard'
                     href='/primitives/docs/guides/styling'
                   >
-                    Saving Visualizations
+                    Predict your next saving, visualize the potential saving,
+                    and get cluster setup recommendatations
                   </ListItem>
                 </Link>
               </ul>
