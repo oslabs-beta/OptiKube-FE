@@ -96,7 +96,7 @@ const UserDashboard = () => {
   }, [isAollocationDataFetched]);
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col h-full'>
       <NavBar />
       <div className='flex flex-row'>
         <div className='w-1/2 p-4 flex flex-col items-left mt-14 mb-0 ml-8 mx-3'>
