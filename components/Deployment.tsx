@@ -50,7 +50,7 @@ const Deployment = props => {
     const handleUpdateAutoscaler = async (formData) => {
         closeUpdateModal();  // Close modal on submission
         // Add your fetch API logic here to send `formData` to your backend
-        const response = await fetch('http://34.71.62.191:80/api/update', {
+        const response = await fetch('/api/update', {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const Deployment = props => {
     const handleCreateAutoscaler = async (formData) => {
         closeCreateModal();  // Close modal on submission
         // Add your fetch API logic here to send `formData` to your backend
-        const response = await fetch('http://34.41.209.93:8080/api/create', {
+        const response = await fetch('/api/create', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ const Deployment = props => {
         closeDeleteModal(); // Close the modal after confirmation
         // Here, add your API call or logic to delete the autoscaler
         try {
-            const response = await fetch('http://34.41.209.93:8080/api/delete', {
+            const response = await fetch('/api/delete', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -163,7 +163,11 @@ const Deployment = props => {
                     minCPU: null,
                 })
             }
-            if (!response.ok) throw new Error('Failed to delete autoscaler');
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error response:', errorText);
+                throw new Error(`Failed to delete autoscaler: ${response.status} ${errorText}`);
+            }
             alert('Autoscaler deleted successfully');
         } catch (err) {
             alert(`Error: ${err.message}`);
