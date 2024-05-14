@@ -50,7 +50,7 @@ const Deployment = props => {
     const handleUpdateAutoscaler = async (formData) => {
         closeUpdateModal();  // Close modal on submission
         // Add your fetch API logic here to send `formData` to your backend
-        const response = await fetch('http://34.71.62.191:80/api/update', {
+        const response = await fetch('http://34.41.209.93:8080/api/update', {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',

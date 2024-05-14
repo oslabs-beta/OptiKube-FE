@@ -26,8 +26,6 @@ const HPADashboard = () => {
       const fetchDeployments = async () => {
           try {
               const response = await fetch('http://34.41.209.93:8080/api/deployments');
-            //   const response = await fetch('http://34.71.62.191:80/api/deployments');
-            //   const response = await fetch('http://optikube-operator-svc.optikube:8080/api');
               const data = await response.json();
               const deploymentItems = data.response.map((item, index) => 
                   <Deployment deployment={item.deployment} key={index} optimization={item["optimization settings"] || null} scaler={item["scaler settings"]}/>
