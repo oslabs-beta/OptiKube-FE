@@ -14,7 +14,7 @@
 <p> This is codebase for Front End of Optikube </p>
 
 ---
-
+</div>
 
 ## Contributions
 Contributions play a vital role in the open-source community and would be welcomed! If you'd like to contribute to OptiKube please follow the steps below.
