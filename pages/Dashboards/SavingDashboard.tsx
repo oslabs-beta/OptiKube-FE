@@ -75,7 +75,7 @@ const SavingDashboard = () => {
       <div className='min-h-full w-full flex flex-row items-center justify-center z-10'>
         <div className='flex flex-row z-10'>
           <h2 className='font-bold text-2xl items-left mt-14 mb-0 ml-8 mx-3 text-slate-800 z-10'>
-            Predict your next savings:
+            Predict your potential savings:
           </h2>
           <Button
             onPress={onOpen}
@@ -102,7 +102,7 @@ const SavingDashboard = () => {
                     <form id='recommendation-form'>
                       <div>
                         <h3 className='flex text-center items-left text-sm'>
-                          Time Window <label className='text-red-500'> *</label>
+                          Time Frame <label className='text-red-500'> *</label>
                         </h3>
                         <select
                           required
@@ -122,7 +122,7 @@ const SavingDashboard = () => {
 
                       <div>
                         <h3 className='flex text-center items-left text-sm z-10'>
-                          CPU Algorithum
+                          CPU Algorithm
                         </h3>
                         <select
                           value={algorithmCPU}
@@ -145,7 +145,7 @@ const SavingDashboard = () => {
 
                       <div>
                         <h3 className='flex text-center items-left text-sm z-10'>
-                          RAW Algorithum
+                          RAW Algorithm
                         </h3>
                         <select
                           value={algorithmRAW}
