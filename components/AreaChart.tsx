@@ -21,11 +21,11 @@ const AreaChart = ({ data, xName, yName }) => {
           xaxis: { categories: metrixesKeys },
           plotOptions: {
             bar: {
-              dataLabels: { position: 'top' }, // Show labels at the top of each bar
+              dataLabels: { position: 'top' }, // Label on top of figure
             },
           },
           legend: {
-            show: true, // Show legend
+            show: true, // Shows legend
             position: 'bottom', // Position legend at the bottom
           },
           dataLabels: { enabled: false },

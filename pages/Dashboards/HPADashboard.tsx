@@ -1,17 +1,5 @@
 // pages/placeholder-page.tsx
 
-// const HPADashboard = () => {
-//     return (
-//       <div className="flex flex-col items-center justify-center h-screen">
-//         <h1 className="text-xl font-bold">HPA Dashboard</h1>
-//         <h3 className="text-xl font-bold">Page Under Construction</h3>
-//         <p className="mt-2">This page is currently being built. Please check back later!</p>
-//       </div>
-//     );
-//   };
-
-//   export default HPADashboard;
-
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { LampContainer } from '../../components/lamp';
@@ -50,16 +38,18 @@ const HPADashboard = () => {
   return (
     <>
       <NavBar />
-      <div className='fixed inset-0 z-[-1]'>
+      {/* <div className='fixed inset-0 z-[-1]'>
         <GridBackgroundDemoNoText />
-      </div>
+      </div> */}
       <div className='container mx-auto px-4'>
         <h1 className='text-2xl font-bold text-center my-8'>Deployments</h1>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
           {deployments}
         </div>
       </div>
-      <Footer />
+      <div className='bottom-0 w-full'>
+        <Footer />
+      </div>
     </>
     //   <>
     //       <span>Deployments:</span>

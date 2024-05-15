@@ -84,68 +84,73 @@ const TrendsDashboard = () => {
   }, [data]);
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col min-h-full '>
       <NavBar />
-      <div className='flex flex-col items-left mt-14 mb-0 ml-8 mx-3'>
-        <h2 className='font-bold text-2xl'>
-          <label>Cumulative cost for last </label>
-          <select
-            id='display-option'
-            value={timeOption}
-            onChange={handleTimeChange}
-            className='w-30 px-3 py-1 border border-gray-300 rounded font-bold mx-2 '
-          >
-            <option value='1d'>1d</option>
-            <option value='7d'>7d</option>
-            <option value='15d'>15d</option>
-            <option value='30d'>30d</option>
-          </select>
-          <label> by namespace</label>
-        </h2>
-        <div className='flex flex-col'>
-          <h2 className='text-base ml-2 mt-6 mb-2'> Time Start: {timeStart}</h2>
-          <h2 className='text-base ml-2'> Time End: {timeEnd} </h2>
+      <div className='min-h-full'>
+        <div className='min-h-full flex flex-col items-left mt-14 mb-0 ml-8 mx-3'>
+          <h2 className='font-bold text-2xl'>
+            <label>Cumulative cost for last </label>
+            <select
+              id='display-option'
+              value={timeOption}
+              onChange={handleTimeChange}
+              className='w-30 px-3 py-1 border border-gray-300 rounded font-bold mx-2 '
+            >
+              <option value='1d'>1d</option>
+              <option value='7d'>7d</option>
+              <option value='15d'>15d</option>
+              <option value='30d'>30d</option>
+            </select>
+            <label> by namespace</label>
+          </h2>
+          <div className='flex flex-col'>
+            <h2 className='text-base ml-2 mt-6 mb-2'>
+              {' '}
+              Time Start: {timeStart}
+            </h2>
+            <h2 className='text-base ml-2'> Time End: {timeEnd} </h2>
+          </div>
         </div>
-      </div>
 
-      <div className='flex flex-row items-center bg-slate-200 my-6 mx-3'>
-        <Table>
-          <TableHeader className='font-bold bg-slate-700 text-white'>
-            <TableColumn>Namespace</TableColumn>
-            <TableColumn>cpuCores</TableColumn>
-            <TableColumn>gpuCount</TableColumn>
-            <TableColumn>ramBytes</TableColumn>
-            <TableColumn>networkTransferBytes</TableColumn>
-            <TableColumn>pvBytes</TableColumn>
-            <TableColumn>totalEfficiency(%)</TableColumn>
-          </TableHeader>
+        <div className='flex flex-row items-center bg-slate-200 my-6 mx-3'>
+          <Table>
+            <TableHeader className='font-bold bg-slate-700 text-white'>
+              <TableColumn>Namespace</TableColumn>
+              <TableColumn>cpuCores</TableColumn>
+              <TableColumn>gpuCount</TableColumn>
+              <TableColumn>ramBytes</TableColumn>
+              <TableColumn>networkTransferBytes</TableColumn>
+              <TableColumn>pvBytes</TableColumn>
+              <TableColumn>totalEfficiency(%)</TableColumn>
+            </TableHeader>
 
-          <TableBody>
-            {data &&
-              !loading &&
-              data.map((item, index) =>
-                item !== null ? (
-                  <TableRow key={index}>
-                    <TableCell className='text-center'>
-                      {item.Namespace}
-                    </TableCell>
-                    <TableCell className='text-center'>{item.CPU}</TableCell>
-                    <TableCell className='text-center'>{item.GPU}</TableCell>
-                    <TableCell className='text-center'>{item.RAW}</TableCell>
-                    <TableCell className='text-center'>
-                      {item.Network}
-                    </TableCell>
-                    <TableCell className='text-center'>
-                      {item.pvBytes}
-                    </TableCell>
-                    <TableCell className='text-center'>
-                      {item.Efficiency}
-                    </TableCell>
-                  </TableRow>
-                ) : null
-              )}
-          </TableBody>
-        </Table>
+            <TableBody>
+              {data &&
+                !loading &&
+                data.map((item, index) =>
+                  item !== null ? (
+                    <TableRow key={index}>
+                      <TableCell className='text-center'>
+                        {item.Namespace}
+                      </TableCell>
+                      <TableCell className='text-center'>{item.CPU}</TableCell>
+                      <TableCell className='text-center'>{item.GPU}</TableCell>
+                      <TableCell className='text-center'>{item.RAW}</TableCell>
+                      <TableCell className='text-center'>
+                        {item.Network}
+                      </TableCell>
+                      <TableCell className='text-center'>
+                        {item.pvBytes}
+                      </TableCell>
+                      <TableCell className='text-center'>
+                        {item.Efficiency}
+                      </TableCell>
+                    </TableRow>
+                  ) : null
+                )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
       <Footer />
     </div>

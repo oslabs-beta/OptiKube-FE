@@ -13,6 +13,7 @@ import { Tooltip } from '@nextui-org/tooltip';
 
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
+import { GridBackgroundDemoNoText } from 'components/GridBackgroundNoText';
 import Recommendation from 'components/Recommendation';
 
 const SavingDashboard = () => {
@@ -68,32 +69,33 @@ const SavingDashboard = () => {
   }, [plotData]);
 
   return (
-    <div className='flex flex-col'>
+    // <div className='flex flex-col min-h-full'>
+    <div className='relative min-h-screen'>
       <NavBar />
-      <div className='h-full w-full flex flex-row items-center justify-center'>
-        <div className='flex flex-row'>
-          <h2 className='font-bold text-2xl items-left mt-14 mb-0 ml-8 mx-3 text-slate-800'>
+      <div className='min-h-full w-full flex flex-row items-center justify-center z-10'>
+        <div className='flex flex-row z-10'>
+          <h2 className='font-bold text-2xl items-left mt-14 mb-0 ml-8 mx-3 text-slate-800 z-10'>
             Predict your next savings:
           </h2>
           <Button
             onPress={onOpen}
-            className='bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 mt-14 rounded'
+            className='bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 mt-14 rounded z-10'
           >
             Start Here
           </Button>
         </div>
 
-        <div className='w-1/2 p-4 flex flex-col items-center justify-center'>
+        <div className='w-1/2 p-4 flex flex-col items-center justify-center z-10'>
           <Modal
             isOpen={isOpen}
             onOpenChange={onOpenChange}
             placement='center'
-            className='w-1/2 bg-slate-900 text-white p-6 rounded-lg shadow-lg'
+            className='w-1/2 bg-slate-900 text-white p-6 rounded-lg shadow-lg z-10'
           >
             <ModalContent>
               {(onClose) => (
                 <>
-                  <ModalHeader className='flex text-center items-center justify-center mt-8'>
+                  <ModalHeader className='flex text-center items-center justify-center mt-8 z-10'>
                     Sizing Recommendation
                   </ModalHeader>
                   <ModalBody>
@@ -106,7 +108,7 @@ const SavingDashboard = () => {
                           required
                           value={windowOption}
                           onChange={(e) => setWindowOption(e.target.value)}
-                          className='mt-2 mb-2 w-full border rounded  bg-slate-900 text-white indent-2'
+                          className='mt-2 mb-2 w-full border rounded  bg-slate-900 text-white indent-2 z-10'
                         >
                           <option value='3d'>3d</option>
                           <option value='7d'>7d</option>
@@ -119,7 +121,7 @@ const SavingDashboard = () => {
                       </div>
 
                       <div>
-                        <h3 className='flex text-center items-left text-sm'>
+                        <h3 className='flex text-center items-left text-sm z-10'>
                           CPU Algorithum
                         </h3>
                         <select
@@ -127,7 +129,7 @@ const SavingDashboard = () => {
                           onChange={(e) =>
                             handleAlgorithmCPUChange(e.target.value)
                           }
-                          className='mt-2 mb-2 w-full border rounded  bg-slate-900 text-white indent-2'
+                          className='mt-2 mb-2 w-full border rounded  bg-slate-900 text-white indent-2 z-10'
                         >
                           <option value='select'>-</option>
                           <option value='max'>max</option>
@@ -142,13 +144,13 @@ const SavingDashboard = () => {
                       </div>
 
                       <div>
-                        <h3 className='flex text-center items-left text-sm'>
+                        <h3 className='flex text-center items-left text-sm z-10'>
                           RAW Algorithum
                         </h3>
                         <select
                           value={algorithmRAW}
                           onChange={(e) => setAlgorithmRAW(e.target.value)}
-                          className='mt-2 mb-2 w-full border rounded  bg-slate-900 text-white indent-2'
+                          className='mt-2 mb-2 w-full border rounded  bg-slate-900 text-white indent-2 z-10'
                         >
                           <option value='select'>-</option>
                           <option value='max'>max</option>
@@ -156,7 +158,7 @@ const SavingDashboard = () => {
                         </select>
                       </div>
 
-                      <div>
+                      {/* <div>
                         <h3 className='flex text-center items-left text-sm'>
                           qCPU Algorithm
                         </h3>
@@ -174,10 +176,10 @@ const SavingDashboard = () => {
                           }}
                           className='h-6 mt-2 mb-2 w-full border rounded bg-slate-900 text-white text-sm items-start align-middle place-content-start indent-4'
                         />
-                      </div>
+                      </div> */}
 
                       <div>
-                        <h3 className='flex text-center items-left text-sm'>
+                        <h3 className='flex text-center items-left text-sm z-10'>
                           targetCPUUtilization
                         </h3>
                         <input
@@ -192,21 +194,21 @@ const SavingDashboard = () => {
                               setTargetCPUUtilization(value);
                             }
                           }}
-                          className='h-6 mt-2 mb-2 w-full border rounded bg-slate-900  text-white text-sm items-start align-middle place-content-start indent-4'
+                          className='h-6 mt-2 mb-2 w-full border rounded bg-slate-900  text-white text-sm items-start align-middle place-content-start indent-4 z-10'
                         />
                       </div>
                     </form>
                   </ModalBody>
                   <ModalFooter>
                     <Button
-                      className='border-slate-400 text-zinc-200'
+                      className='border-slate-400 text-zinc-200 z-10'
                       variant='flat'
                       onPress={onClose}
                     >
                       Close
                     </Button>
                     <Button
-                      className='x-4 py-2 text-zinc-200 bg-slate-600 hover:bg-slate-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto text-center'
+                      className='x-4 py-2 text-zinc-200 bg-slate-600 hover:bg-slate-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto text-center z-10'
                       onClick={handleFormSubmit}
                       onPress={onClose}
                     >
@@ -224,7 +226,7 @@ const SavingDashboard = () => {
 
       {totalSaving && count ? (
         <>
-          <div className='gap-4 p-4 mt-4 text-slate-800 font-bold text-center text-decoration:underline'>
+          <div className='gap-4 p-4 mt-4 text-slate-800 font-bold text-center text-decoration:underline z-10'>
             Total Savings: {totalSaving} (for the following {count}{' '}
             recommendations)
           </div>
@@ -234,15 +236,15 @@ const SavingDashboard = () => {
       )}
 
       {plotData && plotData.length > 0 ? (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mt-0'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mt-0 z-10'>
           {plotData.map((item, index) => (
             <Recommendation key={index} recommendation={item} />
           ))}
         </div>
       ) : (
         <div
-          style={{ height: '55vh' }}
-          className='flex gap-4 ml-10 mt-8 font-bold items-left justify-center'
+          style={{ height: '100vh' }}
+          className='min-h-full flex gap-4 ml-10 mt-8 font-bold items-left justify-center z-10'
         >
           No data available
         </div>

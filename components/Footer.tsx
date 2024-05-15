@@ -5,8 +5,8 @@ const Footer: React.FC = () => {
   const [menu, setMenu] = useState<string>('');
 
   return (
-    <footer className='relative z-50 h-auto bg-slate-600 w-screen flex flex-col items-center justify-center bg-opacity-15 mt-4 mb-0'>
-      <div className='block text-slate-900 text-start no-underline leading-10 items-center align-middle text-sm mx-4 font-bold mt-4 mb-0'>
+    <footer className='relative w-full z-50 h-auto bg-slate-600 flex flex-col items-center justify-center bg-opacity-15 mt-4 mb-0'>
+      <div className='block text-slate-900 text-start no-underline leading-10 items-center align-middle text-sm mx-4 font-bold mt-4 mb-0 lg:flex-row'>
         Quick Links
       </div>
       <div className='flex flex-row'>
@@ -60,6 +60,8 @@ const Footer: React.FC = () => {
       <div className='block text-slate-900 text-start no-underline font-normal leading-10 items-center align-middle gap-5 text-sm mx-4 font-sm mt-2'>
         ©2023 - 2024 Optikube. All rights reserved.
       </div>
+
+      {/* <div style={{ flex: '1 0 auto' }}></div> */}
     </footer>
   );
 };

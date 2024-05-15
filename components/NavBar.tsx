@@ -22,8 +22,8 @@ const NavBar = () => {
             <NavigationMenu.Content className='bg-slate-200 data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-auto sm:w-auto'>
               <ul className='one m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px]'>
                 <ListItem href='/UserDashboard' title='Overview'>
-                  Get high-level information regarding your cluster for the Last
-                  Week.
+                  Get high-level information regarding your cluster for the last
+                  seven days
                 </ListItem>
               </ul>
             </NavigationMenu.Content>
@@ -44,8 +44,9 @@ const NavBar = () => {
                     title='Metrics Dashboard'
                     href='/primitives/docs/overview/introduction'
                   >
-                    View the cumulative cost for a window option and understand
-                    the allocated resrouces of your cluster, based by Namespace
+                    View the cumulative cost for a certain time frame, and
+                    understand the allocated resources of your cluster, based on
+                    namespace
                   </ListItem>
                 </Link>
 
@@ -54,8 +55,8 @@ const NavBar = () => {
                     title='Cost Dashboard'
                     href='/primitives/docs/overview/getting-started'
                   >
-                    View the resources allocated to Kubernetes workloads per
-                    Namespace, Node, or Deployment
+                    View the allocated resources to Kubernetes workloads per
+                    namespace, node, or deployment
                   </ListItem>
                 </Link>
 
@@ -64,8 +65,8 @@ const NavBar = () => {
                     title='Saving Dashboard'
                     href='/primitives/docs/guides/styling'
                   >
-                    Predict your next saving, visualize the potential saving,
-                    and get cluster setup recommendatations
+                    Predict your potential savings, visualize the potential
+                    savings, and get cluster setup recommendatations
                   </ListItem>
                 </Link>
               </ul>
@@ -86,7 +87,7 @@ const NavBar = () => {
                   href='/Dashboards/HPADashboard'
                   title='Custom Scaling'
                 >
-                  Dive into the HPA Custom Setup
+                  Dive into the HPA Customization Board
                 </ListItem>
               </ul>
             </NavigationMenu.Content>
@@ -95,7 +96,7 @@ const NavBar = () => {
           <NavigationMenu.Item>
             <NavigationMenu.Link
               className='text-zinc-200 hover:bg-violet3 focus:shadow-violet7 block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]'
-              href='https://github.com/oslabs-beta/Kubernetes-OSP'
+              href='https://github.com/Optikube'
             >
               Github
             </NavigationMenu.Link>

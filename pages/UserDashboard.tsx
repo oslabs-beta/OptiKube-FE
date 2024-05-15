@@ -1,13 +1,11 @@
-// UserDashboard.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GridBackgroundDemo } from '../components/GridBackground';
-import AreaCharts from '../components/AreaCharts';
-import DonutCharts from '../components/DonutCharts';
 import { PieChart, Pie, Legend, Tooltip } from 'recharts';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import { InfiniteMovingCards } from 'components/Infinite-Moving-Cards';
+import { CLIENT_STATIC_FILES_RUNTIME_AMP } from 'next/dist/shared/lib/constants';
 
 const UserDashboard = () => {
   const [isDataFetched, setIsDataFetched] = useState(false);
@@ -95,41 +93,32 @@ const UserDashboard = () => {
     }
   }, [isAollocationDataFetched]);
 
-  return (
-    <div className='flex flex-col h-full'>
-      <NavBar />
-      <div className='flex flex-row'>
-        <div className='w-1/2 p-4 flex flex-col items-left mt-14 mb-0 ml-8 mx-3'>
-          <h2 className='font-bold text-2xl '>Daily Cost for the Last Week</h2>
-          <div className='flex flex-col shadow-inner ml-2 mt-4 mb-1'>
-            <h2 className='text-base ml-2 mt-4'>Time Start: {timeStartWeek}</h2>
-            <h2 className='text-base ml-2 mt-2'>Time End: {timeEndWeek} </h2>
-          </div>
-          <div className='pt-10 shadow-lg'>
-            {serverDataWeek.length > 0 && (
-              <AreaCharts
-                data={serverDataWeek}
-                xName='Time'
-                yName='Total Cost'
-              />
-            )}
-          </div>
-        </div>
+  const chartItems = [
+    {
+      type: 'donut',
+      data: allocationData, // Data for DonutChart
+      xName: '',
+      yName: '', // Any additional props if needed
+    },
+    {
+      type: 'area',
+      data: serverDataWeek, // Data for AreaChart
+      xName: 'Time',
+      yName: 'Total Cost',
+    },
+  ];
 
-        <div className='w-1/2 p-4 flex flex-col items-left mt-14 mb-0 ml-8 mx-3'>
-          <h2 className='font-bold text-2xl'>Weekly Cost per Category</h2>
-          <div className='flex flex-col shadow-inner ml-2 mt-4 mb-1'>
-            <h2 className='text-base ml-2 mt-4'>Time Start: {timeStartDay}</h2>
-            <h2 className='text-base ml-2 mt-4'>Time End: {timeEndDay} </h2>
-          </div>
-          <div className='pt-10 shadow-lg text-center'>
-            <DonutCharts
-              data={allocationData}
-              xName='Resource Categry'
-              yName='Cost'
-            />
-          </div>
-        </div>
+  return (
+    <div className='relative h-[55rem]'>
+      <NavBar />
+      <GridBackgroundDemo />
+      <div className='absolute top-[100px] inset-0 flex items-center justify-center'>
+        <InfiniteMovingCards
+          items={chartItems}
+          direction='left'
+          speed='normal'
+          pauseOnHover={true}
+        />
       </div>
       <Footer />
     </div>

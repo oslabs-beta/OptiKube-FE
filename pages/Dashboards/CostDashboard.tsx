@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { Progress } from '@nextui-org/progress';
 
 // import AreaChart from '../../components/AreaCharts';
 import BarChart from '../../components/BarCharts';
@@ -11,6 +12,7 @@ import Footer from '../../components/Footer';
 const CostDashboard = () => {
   const [displayOption, setDisplayOption] = useState('namespace');
   const [timeOption, setTimeOption] = useState('12h');
+  const [isLoading, setIsLoading] = useState(false);
 
   const [cpuCostPerNamespace, setCpuCostPerNamespace] = useState({});
   const [loadBalancerCostPerNamespace, setLoadBalancerCostPerNamespace] =
@@ -37,12 +39,14 @@ const CostDashboard = () => {
 
   const handleOptionChange = (event) => {
     setDisplayOption(event.target.value);
+    setIsLoading(true);
   };
 
   // Effect to refresh the window when timeOption changes
   const handleTimeChange = (event) => {
     const newTimeOption = event.target.value;
     setTimeOption(newTimeOption);
+    setIsLoading(true);
   };
 
   // cost per Namespace
@@ -92,8 +96,12 @@ const CostDashboard = () => {
         setLoadBalancerCostPerNamespace(loadBalancerCostPerNamespaceObj);
         setRamCostPerNamespace(rawCostPerNamespaceObj);
         setTotalCostPerNamespace(totalCostPerNamespaceObj);
+        setIsLoading(true);
       } catch (error) {
+        setIsLoading(false);
         console.error('Error fetching sub cost data per namespace:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -136,8 +144,13 @@ const CostDashboard = () => {
         setLoadBalancerCostPerNode(loadBalancerCostPerNodeObj);
         setRamCostPerNode(rawCostPerNodeObj);
         setTotalCostPerNode(totalCostPerNodeObj);
+
+        setIsLoading(true);
       } catch (error) {
+        setIsLoading(false);
         console.error('Error fetching sub cost data per node:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -191,8 +204,13 @@ const CostDashboard = () => {
         setLoadBalancerCostPerDeployment(loadBalancerCostPerDeploymentObj);
         setRamCostPerDeployment(rawCostPerDeploymentObj);
         setTotalCostPerDeployment(totalCostPerDeploymentObj);
+
+        setIsLoading(true);
       } catch (error) {
+        setIsLoading(false);
         console.error('Error fetching sub cost data per Deployment:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -202,6 +220,7 @@ const CostDashboard = () => {
   return (
     <div className='flex flex-col'>
       <NavBar />
+
       <div className='flex flex-row text-center mx-auto my-8 font-base'>
         <label htmlFor='display-option' className='mr-2'>
           Display by:
@@ -230,7 +249,13 @@ const CostDashboard = () => {
         </select>
       </div>
 
-      {displayOption == 'namespace' && (
+      {isLoading && (
+        <div className='flex justify-center items-center'>
+          <Progress />
+        </div>
+      )}
+
+      {displayOption == 'namespace' && !isLoading && (
         <>
           <h2 className='text-base ml-10'>
             Time Start: {timeStartPerNamespace}
@@ -286,10 +311,10 @@ const CostDashboard = () => {
         </>
       )}
 
-      {displayOption == 'node' && (
+      {displayOption == 'node' && !isLoading && (
         <>
-          <h2 className='text-base ml-10'>time start: {timeStartPerNode}</h2>
-          <h2 className='text-base ml-10 mb-4'> time end: {timeEndPerNode} </h2>
+          <h2 className='text-base ml-10'>Time Start: {timeStartPerNode}</h2>
+          <h2 className='text-base ml-10 mb-4'>Time End: {timeEndPerNode} </h2>
           <div className='flex flex-row shadow-lg'>
             <div className='w-1/2 p-4 shadow-inner'>
               <BarChart
@@ -337,14 +362,13 @@ const CostDashboard = () => {
         </>
       )}
 
-      {displayOption == 'deployment' && (
+      {displayOption == 'deployment' && !isLoading && (
         <>
           <h2 className='text-base ml-10'>
-            time start: {timeStartPerDeployment}
+            Time Start: {timeStartPerDeployment}
           </h2>
           <h2 className='text-base ml-10 mb-4'>
-            {' '}
-            time end: {timeEndPerDeployment}{' '}
+            Time End: {timeEndPerDeployment}{' '}
           </h2>
           <div className='flex flex-row shadow-lg'>
             <div className='w-1/2 p-4 shadow-inner'>
