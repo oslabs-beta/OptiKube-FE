@@ -1,118 +1,128 @@
-"use client";
+import { cn } from '../utils/cn';
+import React, { useEffect, useRef } from 'react';
+import DonutChart from './DonutChart';
+import AreaChart from './AreaChart';
 
-import { cn } from "../utils/cn";
-import React, { useEffect, useState } from "react";
+type Item = {
+  type: string;
+  data: any[];
+  xName: string;
+  yName: string;
+  className?: string; // Making className optional
+};
 
-export const InfiniteMovingCards = ({
-  items,
-  direction = "left",
-  speed = "fast",
-  pauseOnHover = true,
-  className,
-}: {
-  items: {
-    quote: string;
-    name: string;
-    title: string;
-  }[];
-  direction?: "left" | "right";
-  speed?: "fast" | "normal" | "slow";
+type InfiniteMovingCardsProps = {
+  items: Item[];
+  direction?: 'left' | 'right';
+  speed?: 'fast' | 'normal' | 'slow';
   pauseOnHover?: boolean;
   className?: string;
+};
+
+export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
+  items,
+  direction = 'left',
+  speed = 'fast',
+  pauseOnHover = true,
+  className,
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const scrollerRef = React.useRef<HTMLUListElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    addAnimation();
-  }, []);
-  const [start, setStart] = useState(false);
-  function addAnimation() {
-    if (containerRef.current && scrollerRef.current) {
-      const scrollerContent = Array.from(scrollerRef.current.children);
+    const scrollContainer = containerRef.current;
+    if (!scrollContainer) return;
 
-      scrollerContent.forEach((item) => {
-        const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
-      });
+    let animationFrameId;
 
-      getDirection();
-      getSpeed();
-      setStart(true);
-    }
-  }
-  const getDirection = () => {
-    if (containerRef.current) {
-      if (direction === "left") {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "forwards"
-        );
+    const scrollEffect = () => {
+      if (direction === 'left') {
+        scrollContainer.scrollLeft += 1;
       } else {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "reverse"
-        );
+        scrollContainer.scrollLeft -= 1;
       }
-    }
-  };
-  const getSpeed = () => {
-    if (containerRef.current) {
-      if (speed === "fast") {
-        containerRef.current.style.setProperty("--animation-duration", "20s");
-      } else if (speed === "normal") {
-        containerRef.current.style.setProperty("--animation-duration", "40s");
-      } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
+
+      // Reset scroll position
+      if (
+        direction === 'left' &&
+        scrollContainer.scrollWidth - scrollContainer.scrollLeft <=
+          scrollContainer.clientWidth
+      ) {
+        scrollContainer.scrollLeft = 0;
+      } else if (direction === 'right' && scrollContainer.scrollLeft <= 0) {
+        scrollContainer.scrollLeft =
+          scrollContainer.scrollWidth - scrollContainer.clientWidth;
       }
+
+      animationFrameId = requestAnimationFrame(scrollEffect);
+    };
+
+    const startScrolling = () =>
+      (animationFrameId = requestAnimationFrame(scrollEffect));
+    const stopScrolling = () => cancelAnimationFrame(animationFrameId);
+
+    startScrolling();
+
+    // Optional: Pause on hover
+    if (pauseOnHover) {
+      scrollContainer.addEventListener('mouseenter', stopScrolling);
+      scrollContainer.addEventListener('mouseleave', startScrolling);
     }
-  };
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      if (pauseOnHover) {
+        scrollContainer.removeEventListener('mouseenter', stopScrolling);
+        scrollContainer.removeEventListener('mouseleave', startScrolling);
+      }
+    };
+  }, [direction, pauseOnHover]);
+
   return (
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        'scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
         className
       )}
     >
       <ul
-        ref={scrollerRef}
         className={cn(
-          " flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
-          start && "animate-scroll ",
-          pauseOnHover && "hover:[animation-play-state:paused]"
+          'flex min-w-[200%] shrink-0 gap-4 py-4 w-max flex-nowrap',
+          'animate-scroll',
+          pauseOnHover && 'hover:[animation-play-state:paused]'
         )}
       >
-        {items.map((item, idx) => (
+        {items.concat(items).map((item, idx) => (
           <li
-            className="w-[350px] max-w-full relative h-64 rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
+            className='w-[700px] max-w-full relative min-h-[32rem] top-20 rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-10 py-8 md:w-[750px] flex flex-col items-center justify-center' // Adjusted for column layout and content alignment
             style={{
               background:
-                "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
+                'linear-gradient(180deg, var(--slate-800), var(--slate-900)',
             }}
-            key={item.name}
+            key={idx}
           >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              <span className=" relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
-                {item.quote}
-              </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.name}
-                  </span>
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.title}
-                  </span>
-                </span>
+            {item.type === 'area' && (
+              <div className='w-full'>
+                {' '}
+                <p className='text-sm text-white mb-2 text-center'>
+                  Daily Cost for the Last Week
+                </p>{' '}
+                <AreaChart
+                  data={item.data}
+                  xName={item.xName}
+                  yName={item.yName}
+                />
               </div>
-            </blockquote>
+            )}
+            {item.type === 'donut' && (
+              <div className='flex flex-1 flex-col justify-center items-center w-full'>
+                {' '}
+                <p className='text-sm text-white mb-4 text-center w-full'>
+                  Weekly Resource Allocation
+                </p>
+                <DonutChart data={item.data} />
+              </div>
+            )}
           </li>
         ))}
       </ul>
@@ -120,3 +130,4 @@ export const InfiniteMovingCards = ({
   );
 };
 
+export default InfiniteMovingCards;
