@@ -62,7 +62,7 @@ const NavBar = () => {
 
                 <Link href='/Dashboards/SavingDashboard' passHref>
                   <ListItem
-                    title='Saving Dashboard'
+                    title='Savings Dashboard'
                     href='/primitives/docs/guides/styling'
                   >
                     Predict your potential savings, visualize the potential
@@ -98,7 +98,7 @@ const NavBar = () => {
               className='text-zinc-200 hover:bg-violet3 focus:shadow-violet7 block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]'
               href='https://github.com/Optikube'
             >
-              Github
+              GitHub
             </NavigationMenu.Link>
           </NavigationMenu.Item>
 
